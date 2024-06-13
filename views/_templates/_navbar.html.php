@@ -1,4 +1,4 @@
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-around topbar">
       <!-- logo -->
       <div class="nav-logo">
         <a href="/">
@@ -23,7 +23,7 @@
         <nav >
           <ul >
             <li >
-              <a href="#">Se connecter
+              <a href="/connexion">Se connecter
                 <i class="bi bi-person custom-svg"></i>
               </a>
 
