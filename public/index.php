@@ -6,8 +6,10 @@ use Dotenv\Dotenv;
 
 
 const DS = DIRECTORY_SEPARATOR;
+
 define('PATH_ROOT', dirname(__DIR__) . DS);
-require PATH_ROOT . 'vendor/autoload.php';
+
+require (PATH_ROOT . 'vendor/autoload.php');
 
 //permet de charger le fichier .env
 Dotenv::createImmutable(PATH_ROOT)->load();

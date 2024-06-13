@@ -19,7 +19,7 @@
       <label class="detail-description">Mot de passe</label>
       <input type="password" class="form-control" name="password">
     </div>
-    <button class="call-action" type="submit">Je m'inscris</button>
+    <button class="call-action" type="submit">Je me connecte</button>
   </form>
 
   <p class="header-description">Je n'ai pas de compte, <a class="auth-link" href="/inscription">Je m'inscrit</a></p>

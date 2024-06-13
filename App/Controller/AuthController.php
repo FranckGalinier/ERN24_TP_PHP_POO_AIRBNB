@@ -151,5 +151,64 @@ class AuthController extends Controller
     self::redirect('/');
   }
 
+  /**
+   * méthode qui va traiter les données du formulaire d'enregistrement
+   * @return void
+   */
+  public function register(ServerRequest $request)
+  {
+    $data_form= $request->getParsedBody(); // on récupère les données du formulaire
+    //on instancie formResult pour stocker les messages d'erreurs
+    $formResult = new FormResult();
+    //on doit crée une instance de User
+    $user = new User();
+
+    //on s'occupe de toute les vérifications
+    if(
+      empty($data_form['email']) ||
+      empty($data_form['password']) ||
+      empty($data_form['password_confirm']) ||
+      empty($data_form['firstname']) ||
+      empty($data_form['lastname'])
+    ){
+      $formResult->addError(new FormError('Veuillez remplir tous les champs'));
+    } elseif($data_form['password'] !== $data_form['password_confirm'])
+    {
+      $formResult->addError(new FormError('Les mots de passe ne correspondent pas'));
+    } elseif(!$this->validEmail($data_form['email']))
+    {
+      $formResult->addError(new FormError('L\'email n\'est pas valide'));
+    } elseif(!$this->validPassword($data_form['password']))
+    {
+      $formResult->addError(new FormError('Le mot de passe doit contenir au moins 8 caractères,
+       une majuscule, une minuscule et un chiffre'));
+    }elseif($this->userExist($data_form['email']))
+    {
+      $formResult->addError(new FormError('Cet email est déjà utilisé'));
+    }else{
+      $data_user = [
+        'email' => strtolower($this->validInput($data_form['email'])),
+        'password' => password_hash($this->validInput($data_form['password']), PASSWORD_BCRYPT),
+        'firstname' => $this->validInput($data_form['firstname']),
+        'lastname' => $this->validInput($data_form['lastname'])
+      ];
+
+      AppRepoManager::getRm()->getUserRepository()->addUser($data_user);
+    }
+    //si on a de serreurs
+    if($formResult->hasErrors())
+    {
+      Session::set(Session::FORM_RESULT, $formResult);
+      self::redirect('/inscription');
+    }
+    $user->password='';
+    //dans la session je crée une clé USER et je la stocke dans $user
+    Session::set(Session::USER, $user);
+    //ici on supprime les messages erreurs des sessions
+    SESSION::remove(Session::FORM_RESULT);
+    //on redirige vers l'accueil
+    self::redirect('/');
+  }
+
 
 }

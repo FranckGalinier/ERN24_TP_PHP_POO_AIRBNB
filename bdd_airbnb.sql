@@ -1,5 +1,3 @@
-
-
 CREATE TABLE IF NOT EXISTS `information` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `address` varchar(255) NOT NULL,
@@ -17,11 +15,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstname` varchar(255),
   `is_active` BOOLEAN NOT NULL DEFAULT 1,
   `is_verified` BOOLEAN NOT NULL DEFAULT 0,
-  `information_id` int(11) NOT NULL,
+  `information_id` int(11),
    
   FOREIGN KEY (`information_id`) REFERENCES `information`(`id`)
 );
 
+INSERT INTO `user` (`email`, `password`, `is_active`, `is_verified`) VALUES ('admin@admin.com', 'Admin1234', 1, 1);
 -- table typeLogement
 CREATE TABLE IF NOT EXISTS `typeLogement`(
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,

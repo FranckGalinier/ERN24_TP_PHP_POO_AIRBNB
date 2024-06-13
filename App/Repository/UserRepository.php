@@ -38,4 +38,36 @@ class UserRepository extends Repository
     return $user ?? null;
 
   }
+
+  /**
+   * méthode pour ajouter un utilisateur
+   * 
+  */
+  public function addUser(array $data):?User
+  {
+    //on crée un tableau pour que le client ne soit pas admin et soit actif
+    $data_more = [
+      'is_active' => 1,
+      'is_verified' => 0
+    ];
+    //on fusionne les deux tableaux
+    $data = array_merge($data, $data_more);
+
+    //on crée notre requête SQL pour ajouter un utilisateur
+    $query = sprintf('INSERT INTO %s (`email`, `password`, `firstname`, `lastname`, `is_active`, `is_verified`) 
+    VALUES (:email, :password, :firstname, :lastname, :is_active, :is_verified)',
+    $this->getTableName()); 
+    //on prépare la requête
+    $stmt = $this->pdo->prepare($query);
+    //on vérifie que la requête est bien préparée
+    if(!$stmt) return null;
+    //on exécute la requête en passant les valeurs
+    $stmt->execute($data);
+
+    //on récupère l'id de l'utilisateur fraichement créée
+    $id = $this->pdo->lastInsertId();
+    //On peux retourner l'objet user grace à la méthode readById
+    return $this->readById(User::class, $id);
+
+  }
 }

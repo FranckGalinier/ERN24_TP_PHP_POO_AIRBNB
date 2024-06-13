@@ -63,9 +63,11 @@ class App implements DatabaseConfigInterface
    //PARTIE AUTHENTIFICATION
    $this->router->get('/connexion', [AuthController::class, 'loginForm']);
   $this->router->get('/inscription', [AuthController::class, 'registerForm']);
+  $this->router->get('/logout', [AuthController::class, 'logout']);
 
   //PARTIE Réception des données du formulaire
   $this->router->post('/login', [AuthController::class, 'login']);
+  $this->router->post('/register', [AuthController::class, 'register']);
 
 
   }

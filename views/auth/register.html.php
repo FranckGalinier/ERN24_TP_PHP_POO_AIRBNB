@@ -30,26 +30,6 @@
       <label class="detail-description">Prénom</label>
       <input type="text" class="form-control" name="firstname">
     </div>
-    <div class="box-auth-input">
-      <label class="detail-description">Votre téléphone</label>
-      <input type="text" class="form-control" name="phone">
-    </div>
-    <div class="box-auth-input">
-      <label class="detail-description">Votre adresse</label>
-      <input type="text" class="form-control" name="address">
-    </div>
-    <div class="box-auth-input">
-      <label class="detail-description">Votre code postal</label>
-      <input type="text" class="form-control" name="phone">
-    </div>
-    <div class="box-auth-input">
-      <label class="detail-description">Votre ville</label>
-      <input type="text" class="form-control" name="city">
-    </div>
-    <div class="box-auth-input">
-      <label class="detail-description">Votre pays</label>
-      <input type="text" class="form-control" name="country">
-    </div>
     <button class="call-action" type="submit">Je m'inscris</button>
   </form>
 
