@@ -11,6 +11,8 @@ a {
 
 ul, ol, li {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* navbar */
@@ -18,7 +20,36 @@ body {
   background-color: rgba(245, 245, 245, 1);
   color: rgb(39, 35, 250);
 }
-
-.nav{
+header{
   background-color: rgb(22, 74, 185);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+li>a {
+  color: white;
+}
+.svg-nav{
+  color: white;
+}
+li>a:hover{
+  color: rgb(73, 103, 187);
+}
+.icon-equipement{
+  margin: 10px;
+}
+
+.dropdown-toggle{
+  color: white;
+}
+
+.nav-user{
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.nav-user:hover{
+background-color: rgb(73, 103, 187);
 }

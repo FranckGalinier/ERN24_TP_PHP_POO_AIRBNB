@@ -193,7 +193,7 @@ class AuthController extends Controller
         'lastname' => $this->validInput($data_form['lastname'])
       ];
 
-      AppRepoManager::getRm()->getUserRepository()->addUser($data_user);
+    $user = AppRepoManager::getRm()->getUserRepository()->addUser($data_user);
     }
     //si on a de serreurs
     if($formResult->hasErrors())
@@ -205,7 +205,7 @@ class AuthController extends Controller
     //dans la session je crée une clé USER et je la stocke dans $user
     Session::set(Session::USER, $user);
     //ici on supprime les messages erreurs des sessions
-    SESSION::remove(Session::FORM_RESULT);
+    Session::remove(Session::FORM_RESULT);
     //on redirige vers l'accueil
     self::redirect('/');
   }

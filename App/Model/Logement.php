@@ -12,6 +12,9 @@ class Logement extends Model
   public int $nb_rooms;
   public int $nb_traveler;
   public int $size;
+  public int $user_id;
+  public int $type_logement_id;
+  public ?int $information_id;
 
   //ici on va hydrater l'objet Information
   public Information $information;

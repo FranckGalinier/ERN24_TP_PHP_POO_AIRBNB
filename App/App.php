@@ -3,8 +3,9 @@
 namespace App;
 
 use MiladRahimi\PhpRouter\Router;
-use App\Controller\HomeController;
 use App\Controller\AuthController;
+use App\Controller\HomeController;
+use App\Controller\LogementController;
 use Core\Database\DatabaseConfigInterface;
 use MiladRahimi\PhpRouter\Exceptions\RouteNotFoundException;
 use MiladRahimi\PhpRouter\Exceptions\InvalidCallableException;
@@ -56,6 +57,10 @@ class App implements DatabaseConfigInterface
   //2. méthode qui enregistre les routes
   private function registerRoutes(): void
   {
+    //on va définir des patterns de routes
+    $this->router->pattern('id', '[0-9]\d*'); //autorise que l'id soit un nombre de 0 à 9 
+    $this->router->pattern('order_id', '[0-9]\d*'); //autorise que l'id soit un nombre de 0 à 9 
+
     //ON ENREGISTRE LES ROUTES ICI
     $this->router->get('/', [HomeController::class, 'home'] );
     //INFO: si on veut renvoyer une vue à l'utilisateur => route en "get"
@@ -68,6 +73,10 @@ class App implements DatabaseConfigInterface
   //PARTIE Réception des données du formulaire
   $this->router->post('/login', [AuthController::class, 'login']);
   $this->router->post('/register', [AuthController::class, 'register']);
+
+  //PARTIE Logement 
+  $this->router->get('/user/create-logement/{id}', [LogementController::class, 'LogementForm']);
+  $this->router->post('/add-annonce-form', [LogementController::class, 'addLogement']);
 
 
   }
