@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\AppRepoManager;
 use App\Model\TypeLogement;
 use Core\Repository\Repository;
 
@@ -20,4 +21,5 @@ class TypeLogementRepository extends Repository
    {
     return $this->readAll(TypeLogement::class);
    }
+
 }

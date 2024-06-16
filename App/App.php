@@ -5,6 +5,7 @@ namespace App;
 use MiladRahimi\PhpRouter\Router;
 use App\Controller\AuthController;
 use App\Controller\HomeController;
+use App\Controller\UserController;
 use App\Controller\LogementController;
 use Core\Database\DatabaseConfigInterface;
 use MiladRahimi\PhpRouter\Exceptions\RouteNotFoundException;
@@ -61,12 +62,12 @@ class App implements DatabaseConfigInterface
     $this->router->pattern('id', '[0-9]\d*'); //autorise que l'id soit un nombre de 0 à 9 
     $this->router->pattern('order_id', '[0-9]\d*'); //autorise que l'id soit un nombre de 0 à 9 
 
-    //ON ENREGISTRE LES ROUTES ICI
-    $this->router->get('/', [HomeController::class, 'home'] );
-    //INFO: si on veut renvoyer une vue à l'utilisateur => route en "get"
-    //INFO: si on veut traiter des données d'un formulaire => route en "post"
-   //PARTIE AUTHENTIFICATION
-   $this->router->get('/connexion', [AuthController::class, 'loginForm']);
+  //ON ENREGISTRE LES ROUTES ICI
+  $this->router->get('/', [HomeController::class, 'home']);
+  //INFO: si on veut renvoyer une vue à l'utilisateur => route en "get"
+  //INFO: si on veut traiter des données d'un formulaire => route en "post"
+  //PARTIE AUTHENTIFICATION
+  $this->router->get('/connexion', [AuthController::class, 'loginForm']);
   $this->router->get('/inscription', [AuthController::class, 'registerForm']);
   $this->router->get('/logout', [AuthController::class, 'logout']);
 
@@ -74,9 +75,10 @@ class App implements DatabaseConfigInterface
   $this->router->post('/login', [AuthController::class, 'login']);
   $this->router->post('/register', [AuthController::class, 'register']);
 
-  //PARTIE Logement 
+  //PARTIE USER 
   $this->router->get('/user/create-logement/{id}', [LogementController::class, 'LogementForm']);
   $this->router->post('/add-annonce-form', [LogementController::class, 'addLogement']);
+  $this->router->get('/user/list-my-logement/{id}', [UserController::class, 'listlogementuser']);
 
 
   }

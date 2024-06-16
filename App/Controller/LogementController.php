@@ -34,14 +34,14 @@ class LogementController extends Controller
    */
 
    public function addLogement(ServerRequest $request):void
-   {
+  {
     $data_form = $request->getParsedBody();
     $form_result= new FormResult();
     $name = $data_form['name'] ?? '';
     $user_id = $data_form['user_id'] ?? '';
-    $typelogement = $data_form['typeLogement'];
+    $typeLogementId = $data_form['typeId'] ?? '';
     $equipements = $data_form['equipements'] ?? [];
-    $array_equipements = count($equipements);
+    //$array_equipements = count($equipements);
     $description = $data_form['description'] ?? '';
     $price = $data_form['price'] ?? '';
     $nb_voyageur = $data_form['nb_voyageur'] ?? '';
@@ -53,8 +53,9 @@ class LogementController extends Controller
     $country = $data_form['country'] ?? '';
     $phone = $data_form['phone'] ?? '';
 
+
     //vérification des données
-    if(empty($name) || empty($user_id) || empty($typelogement) || empty($price) || empty($city))
+    if(empty($name) || empty($user_id) || empty($typeLogementId) || empty($price) || empty($city))
     {
       $form_result->addError(new FormError('Tous les champs sont obligatoires'));
 
@@ -74,6 +75,8 @@ class LogementController extends Controller
     {
       $form_result->addError(new FormError('Erreur lors de l\'ajout de l\'adresse'));
     }
+  
+
 
     //on reconstruit un tableau de données pour insérer le logement
     $logement_data = [
@@ -84,16 +87,16 @@ class LogementController extends Controller
       'nb_traveler' => intval ($nb_voyageur),
       'nb_rooms' => intval ($nb_rooms),
       'size' => intval ($size),
-      'information_id' => intval($logement_information)
+      'information_id' => $logement_information,
+      'type_id' => intval($typeLogementId)
     ];
 
     $logement_id = AppRepoManager::getRm()->getLogementRepository()->addLogement($logement_data);
 
       if(is_null($logement_id))
       {
-        $form_result->addError(new FormError('Erreur lors de la création de la pizza'));
+        $form_result->addError(new FormError('Erreur lors de la créattion du logement'));
       }
-    
       //on va boucler sur les equipements
       foreach($equipements as $equipement)
       {
@@ -105,6 +108,7 @@ class LogementController extends Controller
          //toujours dans le boucle on appelle la méthode pour ajouter les ingredients dans la table pizza_ingredient
 
          $logement_equipement = AppRepoManager::getRm()->getLogement_equipementRepository()->insertLogementEquipement($logement_equipement_data);
+        
          if(!$logement_equipement)
          {
            $form_result->addError(new FormError('Erreur lors de l\' ajout des équipements'));
@@ -133,8 +137,8 @@ class LogementController extends Controller
 
     
  
-  }
+    }
 
     
-}
+  }
 }

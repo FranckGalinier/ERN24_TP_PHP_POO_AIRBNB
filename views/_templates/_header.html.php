@@ -4,7 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B&B</title>
+  <meta name="description" content="Airbnb | Locations de vacances, cabanes, maisons de plage, etc.">
+  <title>Airbnb | Locations de vacances, cabanes, maisons de plage, etc.</title>
+
+  <!-- import du svg pour l'afficher dans l'onglet -->
+  <link rel="shortcut icon" href="/assets/airbnb-icon.svg" type="image/x-icon">
+  <!-- import de la policeMerryweather -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
   <!-- import de la librairie bootstrap icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
   <!-- import de la librairie bootstrap -->

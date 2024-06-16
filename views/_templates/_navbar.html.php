@@ -1,8 +1,8 @@
-    <div class="d-flex justify-content-around topbar">
+
       <!-- logo -->
       <div class="nav-logo">
         <a href="/">
-          <img  src="/assets/icons/Airbnb_Logo_Bélo.svg" alt="logo appli" height="40px" width="120px">
+          <img src="/assets/icons/Airbnb_Logo_Bélo.svg" alt="logo appli" height="40px" width="120px">
         </a>
       </div>
 
@@ -16,11 +16,12 @@
           </ul>
         </nav>
       </div>
-      <div>
-        <li>Mode Hôte</li>
-      </div>
+     
       <!-- menu du profil -->
       <div class ="nav-user">
+        <div>
+
+        </div>
         <nav >
           <ul >
             <li >
@@ -31,9 +32,9 @@
               
               if($auth::isAuth()):
 
-?>
+        ?>
 
-<div class="dropdown custom-link">
+        <div class="dropdown custom-link">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
               data-bs-toggle="dropdown" aria-expanded="false">
               <i class="svg-nav bi bi-list"></i>
@@ -54,9 +55,18 @@
                 </ul>
             </div>
             <?php else: ?>
-              <a href="/connexion">Se connecter
-                <i class="bi bi-person custom-svg"></i>
-              </a>
+              <div class="dropdown custom-link">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="svg-nav bi bi-list"></i>
+              <i class="svg-nav bi bi-person-circle"></i></a>
+              
+              
+             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item custom-link" href="/connexion">Connexion</a></li>
+                <li><a class="dropdown-item custom-link" href="/inscription">Inscription</a></li>
+                </ul>
+            </div>
             <?php endif; ?>
 
             </li>
@@ -64,6 +74,3 @@
 
         </nav>
       </div>
-
-
-    </div>

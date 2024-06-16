@@ -18,7 +18,7 @@ class Logement_equipementRepository extends Repository
    */
   public function insertLogementEquipement(array $data):bool
   {
-    $query = sprintf('INSERT INTO `%s` (`logement_id`, `equipement_id`) VALUES ( :logement_id, : equipement_id)',
+    $query = sprintf('INSERT INTO `%s` (`logement_id`, `equipement_id`) VALUES ( :logement_id, :equipement_id)',
     $this->getTableName());
 
     $stmt = $this->pdo->prepare($query);
