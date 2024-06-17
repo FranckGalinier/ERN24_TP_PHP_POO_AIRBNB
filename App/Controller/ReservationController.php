@@ -16,36 +16,43 @@ class ReservationController extends Controller
   /**
    * méthode qui va ajouter les infos récuépérées du formulaire de réservation
    */
-  public function addReservation(ServerRequest $request)
+  public function addReservation(ServerRequest $request):void
   {
     $data_form = $request->getParsedBody();
     $form_result = new FormResult();
-    $date_start = $data_form['date_start'] ?? '';
+    $date_start = $data_form['date_start']??'';
     $date_end = $data_form['date_end'] ?? '';
     $logement_id = $data_form['logement_id'] ?? '';
     $user_id = $data_form['user_id'] ?? '';
     $nb_adult = $data_form['nb_adult'] ?? '';
 
-    if (empty($date_start) || empty($date_end) || empty($logement_id) || empty($user_id) || empty($nb_adult)){
-      $form_result->addError(new FormError('Tous les champs sont obligatoires'));
-    }else{
-      $reservation = AppRepoManager::getReservationRepository()->create([
+    // if (empty($date_start) || empty($date_end) || empty($nb_adult)){
+    //   $form_result->addError(new FormError('Tous les champs sont obligatoires'));
+    // }elseif($nb_adult>15)
+    // {
+    //   $form_result->addError(new FormError('Le nombre d\'adulte doit être inférieur à 15'));
+    // }elseif($nb_adult<1)
+    // {
+    //   $form_result->addError(new FormError('Le nombre d\'adulte doit être supérieur à 1'));
+    // }else{
+      $reservation_data=[
         'date_start' => $date_start,
         'date_end' => $date_end,
         'logement_id' => $logement_id,
         'user_id' => $user_id,
         'nb_adult' => $nb_adult
-      ]);
+      ];
+      var_dump($reservation_data);
+      // $reservation = AppRepoManager::getReservationRepository()->create([
+      //   'date_start' => $date_start,
+      //   'date_end' => $date_end,
+      //   'logement_id' => $logement_id,
+      //   'user_id' => $user_id,
+      //   'nb_adult' => $nb_adult
+      // ]);
 
-      
-      if ($reservation){
-        $form_result->addSuccess(new FormSuccess('Réservation effectuée avec succès'));
-      }else{
-        $form_result->addError(new FormError('Erreur lors de la réservation'));
-      }
-    }
-    //si tout est ok on envoie un message de succès
-    $form_result->addSuccess(new FormSuccess('Adresse ajoutée avec succès'));
+
+    //} 
 
     //si on a des erreurs, on les mets en sessions
     if ($form_result->hasErrors()) {
@@ -60,6 +67,6 @@ class ReservationController extends Controller
       Session::set(Session::FORM_SUCCESS, $form_result);
       //on redirige sur la page detail
       self::redirect('/user/mesreservations/' . $user_id);
-}
-}
+    }
+  }
 }

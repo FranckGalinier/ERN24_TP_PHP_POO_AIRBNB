@@ -132,18 +132,18 @@
             <input type="hidden" name="user_id" value="<?= Session::get(Session::USER)->id ?>">
             <div class="form-group">
               <label for="checkin">Date d'arrivée</label>
-              <input type="date" class="form-control" id="checkin">
+              <input type="date" name="date_end" class="form-control" id="checkin">
             </div>
             <div class="form-group">
               <label for="checkout">Date de départ</label>
-              <input type="date" class="form-control" id="checkout">
+              <input type="date" name="date_start"class="form-control" id="checkout">
             </div>
             <div>
               <label for="nb-child">Nombre d'enfants</label>
               <input type="number" class="form-control">
             </div>
             <label for="nb-adult">Nombre d'adultes</label>
-            <input type="number" class="form-control">
+            <input type="number" name="nb_adult"class="form-control">
 
             <div>
               <p><?= $logement->price ?> €/nuit</p>
