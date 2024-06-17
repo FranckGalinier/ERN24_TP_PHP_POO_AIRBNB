@@ -264,3 +264,8 @@ h1 {
   width: 24px; /* Exemple de taille d'icône */
   height: 24px; /* Exemple de taille d'icône */
 }
+
+.footer-description {
+  font-size: 14px;
+  margin: 10px 0;
+}

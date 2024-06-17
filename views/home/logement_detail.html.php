@@ -5,6 +5,7 @@
   <h1><?= $logement->title ?></h1>
   </div>
 
+
     Galerie d'images 
     <div class="row">
       <div class="col-md-8 mb-4">
@@ -121,7 +122,7 @@
       </div>
     </div>
 
-
+    <?php if ($auth::isAuth()) : ?>
 
     <div class="col-md-4">
       <div class="card">
@@ -129,18 +130,20 @@
           <h3 class="card-title">Réservez maintenant</h3>
           <form action="/add/reservation" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="logement_id" value="<?= $logement->id ?>">
+            <input type="hidden" name="user_logement" value="<?= $logement->user_id?>">
             <input type="hidden" name="user_id" value="<?= Session::get(Session::USER)->id ?>">
+            <input type="hidden" name="price" value="<?= $logement->price ?>">
             <div class="form-group">
               <label for="checkin">Date d'arrivée</label>
-              <input type="date" name="date_end" class="form-control" id="checkin">
+              <input type="date" min="<?= date("Y-m-d") ?>" name="date_start" class="form-control" id="checkin">
             </div>
             <div class="form-group">
               <label for="checkout">Date de départ</label>
-              <input type="date" name="date_start"class="form-control" id="checkout">
+              <input type="date" name="date_end"class="form-control" id="checkout">
             </div>
             <div>
               <label for="nb-child">Nombre d'enfants</label>
-              <input type="number" class="form-control">
+              <input type="number" name="nb_child"class="form-control">
             </div>
             <label for="nb-adult">Nombre d'adultes</label>
             <input type="number" name="nb_adult"class="form-control">
@@ -152,8 +155,14 @@
             <?php if ($form_result && $form_result->hasErrors()) : ?>
             <div class="alert alert-danger" role="alert">
             <?= $form_result->getErrors()[0]->getMessage() ?>
-    </div>
-  <?php endif ?>
+            
+            </div>
+             <?php endif ?>
+             <?php if($form_success && $form_success->hasSuccess()): ?>
+              <div class="alert alert-success" role="alert">
+              <?= $form_success->getSuccess()[0]->getMessage() ?>
+              </div>
+              <?php endif ?>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Réserver</button>
           </form>
@@ -162,8 +171,10 @@
     </div>
   </div>
 </div>
-</div>
-
+</div><?php
+else : ?>
+<p>Connectez-vous pour réserver</p>
+<?php endif ?>
 <!-- Modal pour les images avec carousel -->
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -195,4 +206,3 @@
       </div>
     </div>
   </div>
-</div>

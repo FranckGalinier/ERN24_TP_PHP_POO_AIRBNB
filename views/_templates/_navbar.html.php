@@ -17,7 +17,7 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
     <ul class="d-flex justify-content-center">
       <li class="m-1"><a href="/">Logements</a></li>
       <?php if ($auth::isAuth()) : ?>
-        <li class="m-1"><a href="/user/create-logement/<?= $user_id ?>">Mettre en ligne mon logement</a></li>
+        <li class="m-1"><a href="/user/create-logement/<?= $user_id ?>">Mode hôte</a></li>
       <?php else : ?>
         <li class="m-1"><a href="/connexion">Mettre en ligne mon logement</a></li>
       <?php endif; ?>
@@ -55,7 +55,7 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a href="/user/list-my-logement/<?= $user_id ?>" class="dropdown-item custom-link">Voyages</a></li>
+              <li><a href="/user/reservation/<?= $user_id ?>" class="dropdown-item custom-link">Voyages</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
