@@ -7,12 +7,20 @@
   <div class="d-flex flex-row flex-wrap my-3 justify-content-center col-lg-10">
     <?php foreach($logements as $logement): ?>
       <div class="card m-2" style="width: 18rem;">
-        <a href="/pizza/<?= $logement->id ?>">
-        </a>
         <div class="card-body">
-          <h3 class="card-title sub-title text-center"><?= $logement->title ?></h3>
-          <p><?= $logement->price ?></p>
+        <?php foreach($typelogements as $typelogement): ?>
+
+          <p><?= $typelogement->label ?></p>
+
+          <p class="sub-title"><?= $logement->title?></p>
+          <p><?= $logement->price ?>€ /nuit</p>
+          <a href="/logement/<?= $logement->id ?>" class="call-action">Voir détail</a>
         </div>
       </div>
+      
+    <?php endforeach ?>
     <?php endforeach ?>
   </div>
+ </div>
+
+</main>

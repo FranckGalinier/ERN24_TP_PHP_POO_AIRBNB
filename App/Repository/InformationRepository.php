@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Model\Information;
 use Core\Repository\Repository;
 
 class InformationRepository extends Repository
@@ -27,5 +28,13 @@ class InformationRepository extends Repository
       $stmt->execute($data);
       //on regarder si on a au moins une ligne qui a été ionsérere
       return $this->pdo->lastInsertId();
+  }
+  /**
+   * méthode qui va permettre de récupérer toutes les informations
+   * @return array
+   */
+  public function getAllInformation():array
+  {
+    return $this->readAll(Information::class);
   }
 }

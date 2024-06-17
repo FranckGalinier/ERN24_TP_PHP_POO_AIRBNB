@@ -10,9 +10,16 @@
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
-ul, ol, li {
+a:hover {
+  color: #FF5A5F;
+}
+
+ul,
+ol,
+li {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -66,51 +73,194 @@ ul, ol, li {
   font-weight: 900;
   font-style: italic;
 }
+
 /* navbar */
+
 body {
   background-color: rgb(236, 236, 236);
 
 }
-header{
+
+header {
   background-color: #104590;
   padding-top: 40px;
   padding-bottom: 40px;
-  top :0;
+  top: 0;
   height: 125px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
-  padding-left:70px;
-  padding-right:70px;
+  padding-left: 70px;
+  padding-right: 70px;
 }
 
 li>a {
   color: white;
 }
-.svg-nav{
+
+.svg-nav {
   color: white;
 }
-.icon-equipement{
+
+.icon-equipement {
   margin: 10px;
 }
 
-.dropdown-toggle{
+.dropdown-toggle {
   color: white;
 }
 
-.nav-user{
+.nav-user {
   border-radius: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
 }
-.nav-user:hover{
-background-color: rgb(73, 103, 187);
+
+.nav-user:hover {
+  background-color: rgb(73, 103, 187);
 }
 
-h1{
+h1 {
   font-weight: 700;
-  margin:50px;
-  color: #FF5A5F;
+  margin: 50px;
+  color: #104590;
+}
+
+/* Connexion et inscription */
+.container-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-auth-input {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.call-action {
+  width: 15%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #104590;
+  color: #ccc;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.call-action:hover {
+  background-color: rgb(73, 103, 187);
+  color: #ccc;
+}
+
+.auth-link {
+  color: #104590;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+.box-auth-input {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.detail-description {
+  font-size: 14px;
+  margin: 10px 5px;
+}
+
+/* form create logement */
+.form-check-input:checked {
+  background-color: #FF5A5F;
+  border-color: #FF5A5F;
+}
+
+/*--------------- PAGE DÉTAIL D'ANNONCE ---------------*/
+.property-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.price-per-night {
+  font-size: 1.5rem;
+  color: #e74c3c;
+}
+
+.description {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.amenities {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 1rem;
+}
+
+.amenities li {
+  margin-bottom: 0.5rem;
+}
+
+.amenities li i {
+  color: #3498db;
+  margin-right: 0.5rem;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  height: 500px;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item img:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail-img {
+  cursor: pointer;
+  max-height: 100px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail-img:hover {
+  transform: scale(1.1);
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.icon-size {
+  width: 24px; /* Exemple de taille d'icône */
+  height: 24px; /* Exemple de taille d'icône */
 }

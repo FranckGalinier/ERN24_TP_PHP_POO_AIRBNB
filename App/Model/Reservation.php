@@ -12,6 +12,7 @@ class Reservation extends Model
   public int $nb_adults;
   public int $nb_child;
   public float $price_total;
+  
   public Logement $logement;
   public User $user;
 

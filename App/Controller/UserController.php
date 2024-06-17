@@ -15,7 +15,7 @@ class UserController extends Controller
     $logement = AppRepoManager:: getRm()->getLogementRepository()->getLogementByUserId(Session::get(Session::USER)->id);
     $view_data = [
       'h1' => 'Mes logements',
-      'logement'=> $logement,
+      'logements'=> $logement,
       'form_result' => Session::get(Session::FORM_RESULT),
       'form_success' => Session::get(Session::FORM_SUCCESS),
     ];

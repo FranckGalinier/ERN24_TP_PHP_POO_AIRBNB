@@ -7,6 +7,7 @@ use Core\Model\Model;
 class Equipement extends Model
 {
   public string $label;
+  public string $category;
   public string $image_path;
   public bool $is_active;
 }

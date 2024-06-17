@@ -1,5 +1,5 @@
 <main class="container-form">
-  <h1>Je crée mon compte</h1>
+  <h1>Création de compte</h1>
   <!-- Affichage des erreurs s'il y en a -->
   <!-- si form result et form result a une erruer alors on affiche l'erreur -->
   <?php if ($form_result && $form_result->hasErrors()):?>
@@ -33,5 +33,5 @@
     <button class="call-action" type="submit">Je m'inscris</button>
   </form>
 
-  <p class="header-description">J'ai déjà un compte, <a class="auth-link" href="/connexion">Je me connecte</a></p>
+  <p class="header-description">J'ai déjà un compte <a class="auth-link" href="/connexion">Connexion</a></p>
 </main>
