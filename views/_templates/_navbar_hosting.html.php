@@ -12,23 +12,24 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
 </div>
 
 <!--  barre de navigation -->
-<div class="nav-user">
-  <nav>
+  <nav class="nav-user">
     <ul class="d-flex justify-content-center">
-      <li class=""><a href="/">Logements</a></li>
+      <li class="m-1"><a href="/hosting">Aujourd'hui</a></li>
      
     </ul>
   </nav>
 </div>
 
-<!-- menu du profil -->
- <div class="nav-user">
-   <?php if ($auth::isAuth()) : ?>
-        <li class=""><a href="/hosting">Mode hôte</a></li>
+<div class="nav-user">
+<?php if ($auth::isAuth()) : ?>
+        <li class="m-1"><a href="/user/list-my-logement/<?= $user_id ?>">Annonce</a></li>
       <?php else : ?>
-        <li class=""><a href="/connexion">Mettre en ligne mon logement</a></li>
+        <li class="m-1"><a href="/connexion">Mettre en ligne mon logement</a></li>
       <?php endif; ?>
- </div>
+      </div>
+</div>
+
+<!-- menu du profil -->
 <div class="nav-user">
   <div>
 
@@ -49,17 +50,21 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
 
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li>
-              <a href="/user/reservation/<?= $user_id ?>" class="dropdown-item custom-link">Voyages</a></li>
-              <li>
-              <hr class="dropdown-divider">
+
+
               <li><a href="#" class="dropdown-item custom-link">Profil</a></li>
-              <li><a href="/hosting" class="dropdown-item custom-link">Gérer mes annonces</a></li>
-              </li>
-              
+
+              <li><a href="/user/list-order/<?= $user_id ?>" class="dropdown-item custom-link">Réservations</a></li>
+              <li><a href="/user/create-logement/<?= $user_id ?>" class="dropdown-item custom-link">Créer une annonce</a></li>
+
+              <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item custom-link" href="/logout">Se Déconnecter</a></li>
+              <li><a href="/" class="dropdown-item custom-link">Passez en mode voyageur</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item custom-link" href="/logout"> Se Déconnecter</a></li>
             </ul>
           </div>
         <?php else : ?>

@@ -11,7 +11,7 @@ class View
   //on crée une seconde constante pour aller dans le dossier _templates
   public const PATH_PARTIALS = self::PATH_VIEW . '_templates' . DS;
   //on déclare un titre par défaut
-  public string $title = 'Papa Pizza';
+  public string $title = 'Airbnb';
 
   //on déclare un constructeur
   public function __construct(private string $name, private bool $is_complete = true)
@@ -46,15 +46,17 @@ class View
     //mise en cache du contenu de la vue
     ob_start();
     //on import le template _header.html.php si la vue est complète
-    if($this->is_complete){
-      require self::PATH_PARTIALS . '_header.html.php';
-    }
+
+    // if ($this->is_complete) {
+    //     require self::PATH_PARTIALS . '_header.html.php';
+    //   }
+    
 
     //on import la vue
     require_once $this->getRequirePath();
 
     //on import le template _footer.html.php si la vue est complète
-    if($this->is_complete){
+    if ($this->is_complete) {
       require self::PATH_PARTIALS . '_footer.html.php';
     }
 

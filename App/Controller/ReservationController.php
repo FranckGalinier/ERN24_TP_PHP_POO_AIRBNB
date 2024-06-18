@@ -39,10 +39,12 @@ class ReservationController extends Controller
     $data_form = $request->getParsedBody();
     $form_result = new FormResult();
     $order_number = $this->generateOrderNumber();
+
     $date_start_nuitées = new DateTimeImmutable($data_form['date_start']);
     $date_end_nuitées = new DateTimeImmutable($data_form['date_end']);
     $date_start = $data_form['date_start'] ?? '';
     $date_end = $data_form['date_end'] ?? '';
+
     $logement_id = $data_form['logement_id'] ?? '';
     $user_id = $data_form['user_id'] ?? '';
     $nb_adult = $data_form['nb_adult'] ?? '';
@@ -51,7 +53,7 @@ class ReservationController extends Controller
 
     $interval = $date_start_nuitées->diff($date_end_nuitées);
     $nuitées = $interval->days;
-    $price = $data_form['price'] * $nuitées; ;
+    $price = $data_form['price'] * $nuitées;
 
     if (empty($date_start) || empty($date_end) || empty($nb_adult)){
       $form_result->addError(new FormError('Tous les champs sont obligatoires'));
@@ -116,6 +118,22 @@ class ReservationController extends Controller
     ];
     $view = new View('user/list_reservation');
     
+    $view->render($view_data);
+  }
+  /**
+   * méthode qui va afficher les réservations de tout les logements d'un utilisateur
+   * @param int $id
+   * @return void
+   */
+  public function listAllReservationLogementUser(int $id): void
+  {
+    $reservations = AppRepoManager::getRm()->getReservationRepository()->findReservationsByLogementUserId($id);
+    $view_data = [
+      'form_result' => Session::get(Session::FORM_RESULT),
+      'form_success' => Session::get(Session::FORM_SUCCESS),
+      'reservations' => $reservations,
+    ];
+    $view = new View('user/list_reservation_hote');
     $view->render($view_data);
   }
 }

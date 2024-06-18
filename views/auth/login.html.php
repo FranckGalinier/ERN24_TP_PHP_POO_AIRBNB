@@ -1,3 +1,4 @@
+<?php include(PATH_ROOT . 'views/_templates/_header.html.php'); ?>
 <?php if ($auth::isAuth()) $auth::redirect('/') ?>
 <main class="container-form">
   <h1>Connexion</h1>

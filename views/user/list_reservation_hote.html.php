@@ -1,7 +1,6 @@
-
-<?php include(PATH_ROOT . 'views/_templates/_header.html.php'); ?>
+<?php include(PATH_ROOT . 'views/_templates/_header_hosting.html.php'); ?>
 <div class="admin-container">
-  <h1 class="title">Mes réservations &#x23F0;</h1>
+  <h1 class="title">Les réservations de mes logements &#x23F0;</h1>
 
   <?php
 

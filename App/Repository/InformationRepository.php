@@ -37,4 +37,24 @@ class InformationRepository extends Repository
   {
     return $this->readAll(Information::class);
   }
+  /**
+   * méthode qui va permettre de récupérer les informations par id d'un logement
+   * @param int $id
+   * @return ?Information
+   */
+  public function getInformationByLogementId(int $id):?Information
+  {
+    $query = sprintf('SELECT * FROM `%s` WHERE `id` = :id',
+    $this->getTableName());
+    $stmt = $this->pdo->prepare($query);
+    if (!$stmt) return null;
+    $stmt->execute(['id' => $id]);
+    $result=$stmt->fetch();
+
+    if(!$result) return null;
+
+    $information = new Information($result);
+
+    return $information;
+  }
 }

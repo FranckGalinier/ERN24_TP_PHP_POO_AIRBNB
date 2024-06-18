@@ -2,7 +2,7 @@
 
 use Core\Session\Session;
 use App\AppRepoManager; ?>
-
+<?php include(PATH_ROOT . 'views/_templates/_header_hosting.html.php'); ?>
 <main class="container-form">
   <div class="d-flex justify-content-center">
     <h1> Ajouter une annonce <h1>
@@ -27,7 +27,6 @@ use App\AppRepoManager; ?>
         </div>
         <label class="label-description"><?= $type->label ?></label>
       </div>
-
     <?php endforeach ?>
 
 

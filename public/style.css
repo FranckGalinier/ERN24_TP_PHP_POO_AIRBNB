@@ -14,7 +14,7 @@ a {
 }
 
 a:hover {
-  color: #FF5A5F;
+  color:#d6cbff;
 }
 
 ul,
@@ -78,7 +78,6 @@ li {
 
 body {
   background-color: rgb(236, 236, 236);
-
 }
 
 header {
@@ -95,7 +94,8 @@ header {
 }
 
 li>a {
-  color: white;
+  color: rgb(248, 248, 248);
+  font-size: 18px;
 }
 
 .svg-nav {
@@ -153,14 +153,14 @@ h1 {
   border-radius: 5px;
   border: 1px solid #ccc;
   background-color: #104590;
-  color: #ccc;
   font-weight: 700;
   margin-bottom: 20px;
+  color:rgb(248, 248, 248);
 }
 
 .call-action:hover {
   background-color: rgb(73, 103, 187);
-  color: #ccc;
+  color: #d6cbff;
 }
 
 .auth-link {
@@ -185,7 +185,7 @@ h1 {
   border-color: #FF5A5F;
 }
 
-/*--------------- PAGE DÉTAIL D'ANNONCE ---------------*/
+/*detail annonce*/
 .property-title {
   font-size: 2.5rem;
   font-weight: bold;
@@ -264,8 +264,29 @@ h1 {
   width: 24px; /* Exemple de taille d'icône */
   height: 24px; /* Exemple de taille d'icône */
 }
-
+/* Tableaux */
 .footer-description {
   font-size: 14px;
   margin: 10px 0;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+    border: 1px solid rgb(73, 103, 187);
+    padding: 10px;
+    text-align: center;
+}
+/* Logement card */
+.title-card{
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+.sub-title{
+  font-size: 15px;
+  font-weight: normal;
+  color: #646464;
 }

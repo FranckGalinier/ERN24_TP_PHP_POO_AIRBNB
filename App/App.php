@@ -87,6 +87,9 @@ class App implements DatabaseConfigInterface
     //Partie Reservation
     $this->router->post('/add/reservation', [ReservationController::class, 'addReservation']);
     $this->router->get('/user/reservation/{id}', [ReservationController::class, 'listReservationUser']);
+    $this->router->get('/user/list-order/{id}', [ReservationController::class, 'listAllReservationLogementUser']);
+    //Partie Host
+    $this->router->get('/hosting', [HomeController::class, 'hosting']);
   }
 
   //3. méthode qui démarre le router

@@ -1,12 +1,10 @@
+<?php include(PATH_ROOT . 'views/_templates/_header.html.php'); ?>
 <?php use Core\Session\Session; ?>
 <div class="container mt-5">
   <div class="card p-4">
   <div class="d-flex justify-content-center">
   <h1><?= $logement->title ?></h1>
-  </div>
-
-
-    Galerie d'images 
+  </div> 
     <div class="row">
       <div class="col-md-8 mb-4">
           <?php if (!empty($logement->media)) : ?> 
@@ -43,13 +41,13 @@
     <hr class="divider">
 
     <div class="col-md-8">
-      <h6 class="">Hôte : <span style="font-weight: lighter"><?= $logement->user->lastname . ' ' . $logement->user->firstname ?></span></h6>
+      <h6 class=""> <span style="font-weight: lighter">Hôte: <?=$logement->user->firstname ?></span></h6>
       <hr class="divider">
-      <h2>Description</h2>
+      <h2>A propos de ce logement</h2>
       <p class="description"><?= $logement->description ?></p>
 
       <hr class="divider">
-
+<h3>Inclus dans ce logement :</h2><br>
       <?php
       // Regrouper les équipements par catégorie
       $equipements_par_categorie = [];
@@ -59,11 +57,13 @@
 
       // Afficher uniquement la première catégorie avec maximum 5 labels
       $first_category = true;
+      
       foreach ($equipements_par_categorie as $category => $equipements) :
       ?>
         <div id="<?= strtolower(str_replace(' ', '_', $category)) ?>">
           <?php if ($first_category) : ?>
-            <h2><?= $category ?></h2>
+            
+            <h4><?= $category ?></h4>
             <ul class="amenities">
               <?php
               $count = 0;
@@ -152,17 +152,7 @@
               <p><?= $logement->price ?> €/nuit</p>
             </div>
             <div>
-            <?php if ($form_result && $form_result->hasErrors()) : ?>
-            <div class="alert alert-danger" role="alert">
-            <?= $form_result->getErrors()[0]->getMessage() ?>
-            
-            </div>
-             <?php endif ?>
-             <?php if($form_success && $form_success->hasSuccess()): ?>
-              <div class="alert alert-success" role="alert">
-              <?= $form_success->getSuccess()[0]->getMessage() ?>
-              </div>
-              <?php endif ?>
+            <?php include(PATH_ROOT . 'views/_templates/_message.html.php') ?>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Réserver</button>
           </form>

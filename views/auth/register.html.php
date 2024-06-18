@@ -1,3 +1,4 @@
+<?php include(PATH_ROOT . 'views/_templates/_header.html.php'); ?>
 <main class="container-form">
   <h1>Création de compte</h1>
   <!-- Affichage des erreurs s'il y en a -->

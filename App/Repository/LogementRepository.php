@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\App;
 use App\Model\Media;
 use App\AppRepoManager;
 use App\Model\Logement;
+use App\Model\TypeLogement;
 use Core\Repository\Repository;
 
 class LogementRepository extends Repository
@@ -81,8 +83,10 @@ class LogementRepository extends Repository
     //on crée la requête SQL
     $query = sprintf(
       'SELECT *
-      FROM `%s`',
-      $this->getTableName(), //correspond au %1$s//correspond au %2%s
+      FROM `%s`
+     ',
+      $this->getTableName(), //correspond au %1$s
+      AppRepoManager::getRm()->getTypeLogementRepository()->getTableName() //correspond au %1%s
     );
     //on exécute la requête
     $stmt = $this->pdo->query($query);
@@ -92,16 +96,24 @@ class LogementRepository extends Repository
     //on récupère les données que l'on stocke dans le tableau
     while ($row_data = $stmt->fetch()) {
       //a chaque tour de boucle on instancie un objet logement
-      $array_result[] = new Logement($row_data);
+      $logement = new Logement($row_data);
+     
+      $logement->type_logement =AppRepoManager::getRm()->getTypeLogementRepository()->getTypeByLogementId($logement->type_logement_id);
+      
+      $logement->information = AppRepoManager::getRm()->getInformationRepository()->getInformationByLogementId($logement->information_id);
+      
+      //on stocke logement dans le tableau 
+
+      $array_result[] = $logement;
     }
     //retourne le tableau
     return $array_result;
   }
 
-  /*---------------------------- FUNCTION SQL RECUP ANNONCES ID ------------------------*/
+
   /**
-   * méthode qui permet de récupérer une pizza grace à son id
-   * @param int $pizza_id
+   * méthode qui permet de récupérer un logement grace à son id
+   * @param int $logement_id
    * @return ?Logement
    */
   public function getAnnonceById(int $logement_id): ?Logement
@@ -127,15 +139,17 @@ class LogementRepository extends Repository
     //si je n'ai pas de résultat, je retourne null
     if (!$result) return null;
 
-    //si j'ai un résultat, j'instancie un objet Pizza
+    //si j'ai un résultat, j'instancie un objet Logement
     $logement = new Logement($result);
 
     //on va hydrater les ingredients de la pizza
     $logement->equipements = AppRepoManager::getRm()->getLogement_EquipementRepository()->getEquipementByAnnonceId($logement_id);
-    //on va hydrater les médias do logement
+    // //on va hydrater les médias do logement
     $logement->media = AppRepoManager::getRm()->getMediaRepository()->getMediaByAnnonceId($logement_id);
 
     $logement->user = AppRepoManager::getRm()->getUserRepository()->getUserById($logement->user_id);
+
+    //$logement->type_logement = AppRepoManager::getRm()->getTypeLogementRepository()->getTypeByLogementId($logement->type_logement_id);
     //je retourne l'objet Pizza
     return $logement;
   }

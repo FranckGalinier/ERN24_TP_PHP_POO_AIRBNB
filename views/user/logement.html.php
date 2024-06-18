@@ -1,3 +1,4 @@
+<?php include(PATH_ROOT . 'views/_templates/_header_hosting.html.php'); ?>
 <div class="admin-container">
   <h1><?= $h1 ?></h1>
   <?php include(PATH_ROOT . 'views/_templates/_message.html.php') ?>

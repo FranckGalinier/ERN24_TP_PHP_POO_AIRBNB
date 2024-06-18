@@ -97,7 +97,6 @@ class LogementController extends Controller
           'logement_id' => intval($logement_id),
           'equipement_id' => intval($equipement)
         ];
-
         //toujours dans le boucle on appelle la méthode pour ajouter les ingredients dans la table pizza_ingredient
 
         $logement_equipement = AppRepoManager::getRm()->getLogement_equipementRepository()->insertLogementEquipement($logement_equipement_data);
@@ -139,7 +138,6 @@ class LogementController extends Controller
       'form_result' => Session::get(Session::FORM_RESULT),
       'form_success' => Session::get(Session::FORM_SUCCESS),
     ];
-
     $view = new View('home/logement_detail');
 
     $view->render($view_data);

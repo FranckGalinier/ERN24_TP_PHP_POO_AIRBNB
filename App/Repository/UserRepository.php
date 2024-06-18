@@ -77,14 +77,14 @@ class UserRepository extends Repository
 
   /**
    * méthode qui permet de récupérer un logement grace à son id
-   * @param int $pizza_id
+   * @param int $user_id
    * @return ?user
    */
   public function getUserById(int $user_id): ?User
   {
     //on crée la requete SQL
     $q = sprintf(
-      'SELECT * FROM %s WHERE `id` = :id',
+      'SELECT * FROM %s WHERE `id` = :user_id',
       $this->getTableName()
     );
 
@@ -95,7 +95,7 @@ class UserRepository extends Repository
     if (!$stmt) return null;
 
     //on execute la requete en passant les paramètres
-    $stmt->execute(['id' => $user_id]);
+    $stmt->execute(['user_id' => $user_id]);
 
     //on récupère le résultat
     $result = $stmt->fetch();
@@ -103,7 +103,7 @@ class UserRepository extends Repository
     //si je n'ai pas de résultat, je retourne null
     if (!$result) return null;
 
-    //si j'ai un résultat, j'instancie un objet Pizza
+    //si j'ai un résultat, j'instancie un objet User
     $user = new User($result);
 
     //je retourne l'objet Pizza
