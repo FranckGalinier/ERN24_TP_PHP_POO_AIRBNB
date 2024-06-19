@@ -14,11 +14,11 @@
   <form class="auth-form" action="/login" method="POST">
     <div class="box-auth-input">
       <label class="detail-description">Adresse Email</label>
-      <input type="email" class="form-control" name="email">
+      <input type="email" class="form-control" name="email" placeholder="name@example.com">
     </div>
     <div class="box-auth-input">
       <label class="detail-description">Mot de passe</label>
-      <input type="password" class="form-control" name="password">
+      <input type="password" class="form-control" name="password" placeholder="Mininum : 1 majuscule, 1 minuscule, 1 chiffre, 8 caractères">
     </div>
     <button class="call-action" type="submit">Je me connecte</button>
   </form>

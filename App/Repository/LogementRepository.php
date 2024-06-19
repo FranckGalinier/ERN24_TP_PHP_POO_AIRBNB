@@ -64,7 +64,10 @@ class LogementRepository extends Repository
     while ($row_data = $stmt->fetch()) {
       //a chaque tour de boucle on instancie un objet logement
       $logement = new Logement($row_data);
-
+      //on va hydrater les informations du logement
+      $logement->information = AppRepoManager::getRm()->getInformationRepository()->getInformationByLogementId($logement->information_id);
+      //ainsi qu le type de logement 
+      $logement->type_logement = AppRepoManager::getRm()->getTypeLogementRepository()->getTypeByLogementId($logement->type_logement_id);
       //on stocke logement dans le tableau
       $array_result[] = $logement;
     }

@@ -159,11 +159,22 @@ h1 {
   font-size: 14px;
   margin: 10px 5px;
 }
+h3{
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10px 0;
+}
 
 /* form create logement */
 .form-check-input:checked {
   background-color: #FF5A5F;
   border-color: #FF5A5F;
+}
+.div-form {
+  width: 100%;
+  display:flex; 
+  justify-content:space-evenly;
+  flex-direction: row;
 }
 
 /*detail annonce*/
@@ -310,4 +321,8 @@ footer {
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid #ccc;
+}
+.form-control:focus{
+  border-color: #FF5A5F;
+  box-shadow: 0 0 0 0.2rem #ffa4a7;
 }
