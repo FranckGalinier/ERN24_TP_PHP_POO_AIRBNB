@@ -16,6 +16,7 @@
     <thead>
       <tr>
         <th class="footer-description">Numéro de commande</th>
+        <th class="footer-description">Nom du logement (Ville)</th>
         <th class="footer-description">Date début</th>
         <th class="footer-description">Date de fin</th>
         <th class="footer-description">Prix</th>
@@ -26,6 +27,7 @@
       <?php foreach ($reservations as $row) : ?>
         <tr>
           <td class="footer-description"><?= $row->order_number ?></td>
+          <td class="footer-description"><?= $row->logement->title ?> (<?= $row->logement->information->city ?>)</td>
           <td class="footer-description"><?= $row->date_start ?></td>
           <td class="footer-description"><?= $row->date_end ?></td>
           <td class="footer-description"><?= $row->price_total ?> €</td>

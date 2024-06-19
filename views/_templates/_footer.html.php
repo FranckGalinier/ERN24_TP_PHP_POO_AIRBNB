@@ -1,11 +1,11 @@
   <footer id="footer">
     <nav>
-      <ul class="d-flex justify-content-center">
-        <li class="m-1"><a href="#">footer lien1</a></li>
-        <li class="m-1"><a href="#">footer lien2</a></li>
-        <li class="m-1"><a href="#">footer lien3</a></li>
-        <li class="m-1"><a href="#">footer lien4</a></li>
-      </ul>
+      <div class="d-flex justify-content-center">
+        <p>&copy 2024 Airbnb, Inc &sdot;  <a href="/">Conditions Générales</a>
+      <a href="https://www.facebook.com/AirbnbFrance"><i class="svg-footer bi bi-facebook"></i></a>
+    <a href="https://x.com/airbnb_fr"><i class="svg-footer bi bi-twitter-x"></i></a>
+  <a href="https://www.instagram.com/airbnb/"><i class="svg-footer bi bi-instagram"></i></a></p>
+      </div>
     </nav>
   </footer>
 

@@ -7,7 +7,7 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
 <!-- logo -->
 <div class="nav-logo">
   <a href="/">
-    <img src="/assets/icons/Airbnb_Logo_Bélo.svg" alt="logo appli" height="50px" width="140px">
+    <img src="/assets/icons/Airbnb_Logo_Bélo.svg" alt="logo appli" height="50px" width="100px">
   </a>
 </div>
 
@@ -15,8 +15,7 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
 <div class="nav-user">
   <nav>
     <ul class="d-flex justify-content-center">
-      <li class=""><a href="/">Logements</a></li>
-     
+      <li><a href="/"> Logements</a></li>
     </ul>
   </nav>
 </div>
@@ -24,11 +23,12 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
 <!-- menu du profil -->
  <div class="nav-user">
    <?php if ($auth::isAuth()) : ?>
-        <li class=""><a href="/hosting">Mode hôte</a></li>
+        <li> <a href="/hosting">Mode hôte</a></li>
       <?php else : ?>
         <li class=""><a href="/connexion">Mettre en ligne mon logement</a></li>
       <?php endif; ?>
  </div>
+
 <div class="nav-user">
   <div>
 

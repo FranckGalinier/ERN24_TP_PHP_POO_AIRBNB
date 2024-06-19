@@ -1,6 +1,6 @@
 <?php include(PATH_ROOT . 'views/_templates/_header.html.php'); ?>
 <main class="container-form">
-  <h1>Création de compte</h1>
+  <h1 class="title">Création de compte</h1>
   <!-- Affichage des erreurs s'il y en a -->
   <!-- si form result et form result a une erruer alors on affiche l'erreur -->
   <?php if ($form_result && $form_result->hasErrors()):?>

@@ -142,15 +142,17 @@ class LogementRepository extends Repository
     //si j'ai un résultat, j'instancie un objet Logement
     $logement = new Logement($result);
 
-    //on va hydrater les ingredients de la pizza
+    //on va hydrater les ingredients du logement
     $logement->equipements = AppRepoManager::getRm()->getLogement_EquipementRepository()->getEquipementByAnnonceId($logement_id);
     // //on va hydrater les médias do logement
     $logement->media = AppRepoManager::getRm()->getMediaRepository()->getMediaByAnnonceId($logement_id);
 
     $logement->user = AppRepoManager::getRm()->getUserRepository()->getUserById($logement->user_id);
 
-    //$logement->type_logement = AppRepoManager::getRm()->getTypeLogementRepository()->getTypeByLogementId($logement->type_logement_id);
-    //je retourne l'objet Pizza
+    $logement->information = AppRepoManager::getRm()->getInformationRepository()->getInformationByLogementId($logement->information_id);
+
+    $logement->type_logement = AppRepoManager::getRm()->getTypeLogementRepository()->getTypeByLogementId($logement->type_logement_id);
+    //je retourne l'objet Logement
     return $logement;
   }
 }

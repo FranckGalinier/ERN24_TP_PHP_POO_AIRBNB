@@ -3,18 +3,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Merriweather", serif;
   font-weight: 400;
   font-style: normal;
+  font-family: 'Cereal Light', sans-serif;
 }
 
 a {
   text-decoration: none;
   color: inherit;
-}
-
-a:hover {
-  color:#d6cbff;
 }
 
 ul,
@@ -25,81 +21,67 @@ li {
   padding: 0;
 }
 
-/* Police  */
-.merriweather-light {
-  font-family: "Merriweather", serif;
-  font-weight: 300;
-  font-style: normal;
+/* Police */
+@font-face {
+  font-family: "Cereal Bold";
+  src: url("/public/fonts/AirbnbCereal_W_Bd.otf") format("opentype");
 }
 
-.merriweather-regular {
-  font-family: "Merriweather", serif;
-  font-weight: 400;
-  font-style: normal;
+@font-face {
+  font-family: "Cereal Medium";
+  src: url("/public/fonts/AirbnbCereal_W_Md.otf") format("opentype");
 }
 
-.merriweather-bold {
-  font-family: "Merriweather", serif;
-  font-weight: 700;
-  font-style: normal;
+@font-face {
+  font-family: "Cereal Book";
+  src: url("/public/fonts/AirbnbCereal_W_Bk.otf") format("opentype");
 }
 
-.merriweather-black {
-  font-family: "Merriweather", serif;
-  font-weight: 900;
-  font-style: normal;
+@font-face {
+  font-family: "Cereal Light";
+  src: url("/public/fonts/AirbnbCereal_W_Lt.otf") format("opentype");
 }
 
-.merriweather-light-italic {
-  font-family: "Merriweather", serif;
-  font-weight: 300;
-  font-style: italic;
+@font-face {
+  font-family: "Cereal Extra Bold";
+  src: url("/public/fonts/AirbnbCereal_W_ExtraBold.otf") format("opentype");
 }
 
-.merriweather-regular-italic {
-  font-family: "Merriweather", serif;
-  font-weight: 400;
-  font-style: italic;
+@font-face {
+  font-family: "Cereal Black";
+  src: url("/public/fonts/AirbnbCereal_W_Bl.otf") format("opentype");
 }
 
-.merriweather-bold-italic {
-  font-family: "Merriweather", serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.merriweather-black-italic {
-  font-family: "Merriweather", serif;
-  font-weight: 900;
-  font-style: italic;
+body {
+  background-color: #fafafa;
 }
 
 /* navbar */
 
-body {
-  background-color: rgb(236, 236, 236);
-}
 
 header {
-  background-color: #104590;
+  background-color: #fafafa;
   padding-top: 40px;
   padding-bottom: 40px;
   top: 0;
   height: 125px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding-left: 70px;
-  padding-right: 70px;
+  border-bottom: 1px solid #ccc;
 }
 
 li>a {
-  color: rgb(248, 248, 248);
-  font-size: 18px;
+  color: rgb(82, 82, 82);
+  font-size: 16px;
 }
 
 .svg-nav {
-  color: white;
+  color: rgb(82, 82, 82);
+  font-size: 18px;
+}
+.svg-footer{
+  margin-left: 6px;
 }
 
 .icon-equipement {
@@ -119,13 +101,13 @@ li>a {
 }
 
 .nav-user:hover {
-  background-color: rgb(73, 103, 187);
+  background-color: rgb(238, 236, 236);
 }
 
 h1 {
-  font-weight: 700;
-  margin: 50px;
-  color: #104590;
+  font-family: 'Cereal Medium', sans-serif;
+  font-size: 26px;
+  font-weight: 500;
 }
 
 /* Connexion et inscription */
@@ -148,19 +130,18 @@ h1 {
 }
 
 .call-action {
-  width: 15%;
+  width: auto;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: #104590;
+  background-color: #FF5A5F;
   font-weight: 700;
   margin-bottom: 20px;
-  color:rgb(248, 248, 248);
+  color: rgb(248, 248, 248);
 }
 
 .call-action:hover {
-  background-color: rgb(73, 103, 187);
-  color: #d6cbff;
+  background-color: #ff8286;
 }
 
 .auth-link {
@@ -240,8 +221,9 @@ h1 {
 }
 
 .card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border: none;
+  border-radius: 10px;
 }
 
 .modal-content {
@@ -261,32 +243,71 @@ h1 {
 }
 
 .icon-size {
-  width: 24px; /* Exemple de taille d'icône */
-  height: 24px; /* Exemple de taille d'icône */
+  width: 24px;
+  /* Exemple de taille d'icône */
+  height: 24px;
+  /* Exemple de taille d'icône */
 }
+
 /* Tableaux */
 .footer-description {
   font-size: 14px;
   margin: 10px 0;
 }
+
 table {
   border-collapse: collapse;
   width: 100%;
 }
+
 th,
 td {
-    border: 1px solid rgb(73, 103, 187);
-    padding: 10px;
-    text-align: center;
+  border: 1px solid #FF5A5F;
+  padding: 10px;
+  text-align: center;
 }
+
 /* Logement card */
-.title-card{
-  font-size: 18px;
+.title-card {
+  font-size: 15px;
   font-weight: bold;
   color: #2c3e50;
 }
-.sub-title{
-  font-size: 15px;
+
+.sub-title {
+  font-size: 14px;
   font-weight: normal;
   color: #646464;
+}
+
+.price-card {
+  font-size: 14px;
+  font-weight: bold;
+  color: #e74c3c;
+}
+.price-total{
+  font-size: 16px;
+  font-weight: bold;
+  color: #e74c3c;
+  margin: 10px;
+  text-align:center;
+}
+
+.title{
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 28px;
+}
+.admin-container{
+  padding-bottom: 50px;
+}
+footer {
+  background-color: #fafafa;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #ccc;
 }

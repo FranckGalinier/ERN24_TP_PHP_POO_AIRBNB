@@ -36,6 +36,7 @@ class ReservationController extends Controller
    */
   public function addReservation(ServerRequest $request):void
   {
+    //reception des données du formulaire
     $data_form = $request->getParsedBody();
     $form_result = new FormResult();
     $order_number = $this->generateOrderNumber();
@@ -50,7 +51,10 @@ class ReservationController extends Controller
     $nb_adult = $data_form['nb_adult'] ?? '';
     $nb_child = $data_form['nb_child'] ?? '';
     $user_logement=$data_form['user_logement'] ?? '';
+    $nb_traveler = $data_form['nb_traveler'] ?? '';
 
+    // traitements des données pour les calculs
+    $nb_traveler_sum = intval($nb_adult) + intval($nb_child);
     $interval = $date_start_nuitées->diff($date_end_nuitées);
     $nuitées = $interval->days;
     $price = $data_form['price'] * $nuitées;
@@ -65,8 +69,12 @@ class ReservationController extends Controller
        $form_result->addError(new FormError('Le nombre d\'adulte doit être supérieur à 1'));
      }elseif($date_start==$date_end){
         $form_result->addError(new FormError('La date de départ doit être différente de la date d\'arrivée'));
+     }elseif($date_start>$date_end){
+        $form_result->addError(new FormError('La date de d\'arrivé doit être supérieure à la date de départ'));
      }elseif($user_id==$user_logement){
         $form_result->addError(new FormError('Vous ne pouvez pas réserver votre propre logement'));
+     }elseif($nb_traveler_sum>$nb_traveler){
+        $form_result->addError(new FormError('Le nombre de voyageurs doit être inférieur au nombre de voyageurs maximum'));
      }else{ 
       $reservation_data=[
         'order_number' => $order_number,

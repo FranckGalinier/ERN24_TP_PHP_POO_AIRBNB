@@ -7,26 +7,26 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
 <!-- logo -->
 <div class="nav-logo">
   <a href="/">
-    <img src="/assets/icons/Airbnb_Logo_Bélo.svg" alt="logo appli" height="50px" width="140px">
+    <img src="/assets/icons/Airbnb_Logo_Bélo.svg" alt="logo appli" height="50px" width="100px">
   </a>
 </div>
 
 <!--  barre de navigation -->
-  <nav class="nav-user">
-    <ul class="d-flex justify-content-center">
-      <li class="m-1"><a href="/hosting">Aujourd'hui</a></li>
-     
-    </ul>
-  </nav>
+<nav class="nav-user">
+  <ul class="d-flex justify-content-center">
+    <li class="m-1"><a href="/hosting">Aujourd'hui</a></li>
+
+  </ul>
+</nav>
 </div>
 
 <div class="nav-user">
-<?php if ($auth::isAuth()) : ?>
-        <li class="m-1"><a href="/user/list-my-logement/<?= $user_id ?>">Annonce</a></li>
-      <?php else : ?>
-        <li class="m-1"><a href="/connexion">Mettre en ligne mon logement</a></li>
-      <?php endif; ?>
-      </div>
+  <?php if ($auth::isAuth()) : ?>
+    <li class="m-1"><a href="/user/list-my-logement/<?= $user_id ?>">Annonce</a></li>
+  <?php else : ?>
+    <li class="m-1"><a href="/connexion">Mettre en ligne mon logement</a></li>
+  <?php endif; ?>
+</div>
 </div>
 
 <!-- menu du profil -->

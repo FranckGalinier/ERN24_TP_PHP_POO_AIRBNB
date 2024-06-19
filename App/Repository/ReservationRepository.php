@@ -66,9 +66,11 @@ class ReservationRepository extends Repository
     $array_result = [];
     $query = sprintf(
       'SELECT *
-      FROM `%s`
+      FROM %s
       WHERE `user_id` = :id',
-      $this->getTableName()
+      $this->getTableName(),
+      AppRepoManager::getRm()->getUserRepository()->getTableName(),
+      AppRepoManager::getRm()->getLogementRepository()->getTableName()
     );
     //on prépare la requête
     $stmt = $this->pdo->prepare($query);
@@ -80,6 +82,8 @@ class ReservationRepository extends Repository
     while ($row_data = $stmt->fetch()) {
       //a chaque tour de boucle on instancie un objet logement
       $logement = new Reservation($row_data);
+      //on va hydrater l'objet Rerservation 
+    $logement->logement = AppRepoManager::getRm()->getLogementRepository()->getAnnonceById($row_data['user_id']);
 
       //on stocke logement dans le tableau
       $array_result[] = $logement;
@@ -101,10 +105,12 @@ class ReservationRepository extends Repository
       'SELECT * FROM %1$s as r
   INNER JOIN %2$s as l ON r.`logement_id` = l.`id`
   INNER JOIN %3$s as u ON l.`user_id` = u.`id`
+  INNER JOIN %4$s as i ON l.`information_id` = i.`id`
   WHERE u. `id` = :id',
       $this->getTableName(), // correspond à la table reservation
       AppRepoManager::getRm()->getLogementRepository()->getTableName(), // correspond à la table logement
-      AppRepoManager::getRm()->getUserRepository()->getTableName() // correspond à la table user
+      AppRepoManager::getRm()->getUserRepository()->getTableName(), // correspond à la table user
+      AppRepoManager::getRm()->getInformationRepository()->getTableName() // correspond à la table information
     );
     $stmt = $this->pdo->prepare($query);
 
@@ -116,7 +122,7 @@ class ReservationRepository extends Repository
       $reservation = new Reservation($row_data);
       //on va hydrater l'objet logement*
       $reservation->logement = AppRepoManager::getRm()->getLogementRepository()->getAnnonceById($row_data['logement_id']);
-
+      $reservation->logement->information = AppRepoManager::getRm()->getInformationRepository()->getInformationByLogementId($reservation->logement->information_id);
       $array_result[] = $reservation;
     }
     return $array_result;
