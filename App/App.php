@@ -8,6 +8,7 @@ use App\Controller\HomeController;
 use App\Controller\UserController;
 use App\Controller\LogementController;
 use App\Controller\ReservationController;
+use App\Repository\UserRepository;
 use Core\Database\DatabaseConfigInterface;
 use MiladRahimi\PhpRouter\Exceptions\RouteNotFoundException;
 use MiladRahimi\PhpRouter\Exceptions\InvalidCallableException;
@@ -80,6 +81,11 @@ class App implements DatabaseConfigInterface
     $this->router->get('/user/create-logement/{id}', [LogementController::class, 'LogementForm']);
     $this->router->post('/add-annonce-form', [LogementController::class, 'addLogement']);
     $this->router->get('/user/list-my-logement/{id}', [UserController::class, 'listlogementuser']);
+    $this->router->get('/user/logement/delete/{id}', [UserController::class, 'DesactivationLogement']);
+    $this->router->get('/user/logement/active/{id}', [UserController::class, 'ActivationLogement']);
+    $this->router->get('/profil/{id}', [UserController::class, 'profil']);
+    $this->router->get('/add_information_user/{id}', [UserController::class, 'addInformationUserForm']);
+    $this->router->post('/add_info_user', [UserController::class, 'addInformationUser']); 
 
     //Partie Logement
     $this->router->get('/logement/{id}', [LogementController::class, 'getAnnonceById']);
@@ -88,6 +94,7 @@ class App implements DatabaseConfigInterface
     $this->router->post('/add/reservation', [ReservationController::class, 'addReservation']);
     $this->router->get('/user/reservation/{id}', [ReservationController::class, 'listReservationUser']);
     $this->router->get('/user/list-order/{id}', [ReservationController::class, 'listAllReservationLogementUser']);
+    $this->router->get('/user/cancel-reservation/{id}', [ReservationController::class, 'cancelReservation']);
     //Partie Host
     $this->router->get('/hosting', [HomeController::class, 'hosting']);
   }

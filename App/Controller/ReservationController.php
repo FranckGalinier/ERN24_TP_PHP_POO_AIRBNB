@@ -144,4 +144,35 @@ class ReservationController extends Controller
     $view = new View('user/list_reservation_hote');
     $view->render($view_data);
   }
+
+  /**
+   * méthode qui va annuler la réservation d'un utilisateur
+   * @param int $id
+   * @return void
+   */
+  public function cancelReservation(int $id): void
+  {
+    $form_result = new FormResult();
+    $user_id = Session::get(Session::USER)->id;
+    $cancel_reservation = AppRepoManager::getRm()->getReservationRepository()->cancelReservation($id);
+    if ($cancel_reservation === false) {
+      $form_result->addError(new FormError('Une erreur est survenue lors de l\'annulation de votre réservation'));
+    } else {
+      $form_result->addSuccess(new FormSuccess('Votre réservation a bien été annulée'));
+    }
+    //si on a des erreurs, on les mets en sessions
+    if ($form_result->hasErrors()) {
+      Session::set(Session::FORM_RESULT, $form_result);
+      //on redirige sur la page detail
+      self::redirect('/user/reservation/' . $user_id);
+    }
+
+    //si on a des succès, on les mets en sessions
+    if ($form_result->hasSuccess()) {
+      Session::remove(Session::FORM_RESULT);
+      Session::set(Session::FORM_SUCCESS, $form_result);
+      //on redirige sur la page detail
+      self::redirect('/user/reservation/' . $user_id);
+    }
+  }
 }

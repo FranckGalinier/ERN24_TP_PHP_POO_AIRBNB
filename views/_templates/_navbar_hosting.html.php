@@ -52,7 +52,7 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
 
-              <li><a href="#" class="dropdown-item custom-link">Profil</a></li>
+              <li><a href="/profil/<?= Session::get(Session::USER)->id ?>" class="dropdown-item custom-link">Profil</a></li>
 
               <li><a href="/user/list-order/<?= $user_id ?>" class="dropdown-item custom-link">Réservations</a></li>
               <li><a href="/user/create-logement/<?= $user_id ?>" class="dropdown-item custom-link">Créer une annonce</a></li>

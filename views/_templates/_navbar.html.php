@@ -53,7 +53,7 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
               <a href="/user/reservation/<?= $user_id ?>" class="dropdown-item custom-link">Voyages</a></li>
               <li>
               <hr class="dropdown-divider">
-              <li><a href="#" class="dropdown-item custom-link">Profil</a></li>
+              <li><a href="/profil/<?= $user_id ?>" class="dropdown-item custom-link">Profil</a></li>
               <li><a href="/hosting" class="dropdown-item custom-link">Gérer mes annonces</a></li>
               </li>
               

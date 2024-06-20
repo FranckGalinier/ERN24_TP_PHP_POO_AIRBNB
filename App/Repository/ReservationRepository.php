@@ -67,10 +67,9 @@ class ReservationRepository extends Repository
     $query = sprintf(
       'SELECT *
       FROM %s
-      WHERE `user_id` = :id',
+      WHERE `user_id` = :id ',
       $this->getTableName(),
-      AppRepoManager::getRm()->getUserRepository()->getTableName(),
-      AppRepoManager::getRm()->getLogementRepository()->getTableName()
+      AppRepoManager::getRm()->getLogementRepository()->getTableName(),
     );
     //on prépare la requête
     $stmt = $this->pdo->prepare($query);
@@ -81,9 +80,9 @@ class ReservationRepository extends Repository
     //on récupère les données
     while ($row_data = $stmt->fetch()) {
       //a chaque tour de boucle on instancie un objet logement
-      $logement = new Reservation($row_data);
+    $logement = new Reservation($row_data);
       //on va hydrater l'objet Rerservation 
-    $logement->logement = AppRepoManager::getRm()->getLogementRepository()->getAnnonceById($row_data['user_id']);
+    $logement->logement = AppRepoManager::getRm()->getLogementRepository()->getAnnonceById($row_data['logement_id']);
 
       //on stocke logement dans le tableau
       $array_result[] = $logement;
@@ -103,10 +102,10 @@ class ReservationRepository extends Repository
 
     $query = sprintf(
       'SELECT * FROM %1$s as r
-  INNER JOIN %2$s as l ON r.`logement_id` = l.`id`
-  INNER JOIN %3$s as u ON l.`user_id` = u.`id`
-  INNER JOIN %4$s as i ON l.`information_id` = i.`id`
-  WHERE u. `id` = :id',
+        INNER JOIN %2$s as l ON r.`logement_id` = l.`id`
+        INNER JOIN %3$s as u ON l.`user_id` = u.`id`
+        INNER JOIN %4$s as i ON l.`information_id` = i.`id`
+        WHERE u. `id` = :id ',
       $this->getTableName(), // correspond à la table reservation
       AppRepoManager::getRm()->getLogementRepository()->getTableName(), // correspond à la table logement
       AppRepoManager::getRm()->getUserRepository()->getTableName(), // correspond à la table user
@@ -126,5 +125,22 @@ class ReservationRepository extends Repository
       $array_result[] = $reservation;
     }
     return $array_result;
+  }
+
+  /**
+   * Méthode qui va supprimer une réservation
+   * @param int $id
+   * @return bool
+   */
+  public function cancelReservation(int $id): bool
+  {
+    $query = sprintf(
+      'DELETE FROM %s WHERE id = :id',
+      $this->getTableName()
+    );
+    $stmt = $this->pdo->prepare($query);
+    if (!$stmt) return false;
+
+    return $stmt->execute(['id' => $id]);
   }
 }

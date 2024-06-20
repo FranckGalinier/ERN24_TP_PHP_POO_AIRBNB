@@ -28,8 +28,13 @@
           <p class="sub-title"><?= $logement->price ?> €</p>
 
           <div class="d-flex justify-content-center">
-            <a onclick="return confirm('Voulez-vous vraiment supprimer ce logement ?')" 
-            href="/user/pizza/delete/<?= $logement->id ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+            <?php if($logement->is_active===false): ?>
+              <a href="/user/logement/active/<?= $logement->id ?>" class="btn btn-success"><i class="bi bi-eye"></i></a>
+           <?php else: ?>
+              <a href="/user/logement/delete/<?= $logement->id ?>" class="btn btn-danger"><i class="bi bi-eye-slash"></i></a>
+            <!-- <a onclick="return confirm('Voulez-vous vraiment supprimer ce logement ?')" 
+            href="/user/logement/delete/<?= $logement->id ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a> -->
+            <?php endif ?>
           </div>
         </div>
         </a>

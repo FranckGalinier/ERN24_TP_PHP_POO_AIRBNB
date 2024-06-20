@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Model\User;
 use App\AppRepoManager;
 use App\Model\Logement;
+use App\Model\Information;
 use Core\Repository\Repository;
 
 class UserRepository extends Repository
@@ -50,7 +51,7 @@ class UserRepository extends Repository
     //on crée un tableau pour que le client ne soit pas admin et soit actif
     $data_more = [
       'is_active' => 1,
-      'is_verified' => 0
+      'is_verified' => 0,
     ];
     //on fusionne les deux tableaux
     $data = array_merge($data, $data_more);
@@ -105,8 +106,55 @@ class UserRepository extends Repository
 
     //si j'ai un résultat, j'instancie un objet User
     $user = new User($result);
+    //on hydrate la table information
+    $user->information = AppRepoManager::getRm()->getInformationRepository()->getInformationByLogementId($user->id);
 
     //je retourne l'objet Pizza
     return $user;
+  }
+
+  /**
+   * méthode qui va permettre de récupérer les informations d'un utilisateur
+   * @param int $id
+   * @return ?Information
+   */
+  public function getInformationByUserId(int $id): ?Information
+  {
+    $query = sprintf('SELECT * FROM %1$s u INNER JOIN %2$s as i on i.id = u.information_id WHERE `id` = :id',
+      $this->getTableName(),
+      AppRepoManager::getRm()->getInformationRepository()->getTableName());
+    $stmt = $this->pdo->prepare($query);
+    if (!$stmt) return null;
+    $stmt->execute(['id' => $id]);
+    $result = $stmt->fetch();
+
+    if (!$result) return null;
+
+    $information = new Information($result);
+
+    return $information;
+  }
+
+  /**
+   * méthode qui va permettre d'ajouter'les informations d'un utilisateur
+   * @param int $id
+   * @return ?Information
+   */
+  public function addInformationUser(array $information): ?bool
+  {
+    $query = sprintf('INSERT INTO %1$s as i (`address`, `city`, `zip_code`, `country`, `phone`)
+    VALUES (:address, :city, :zip_code, :country, :phone)',
+      AppRepoManager::getRm()->getInformationRepository()->getTableName());
+    $stmt = $this->pdo->prepare($query);
+    if (!$stmt) return null;
+    $stmt->execute([
+      'address' => $information['address'],
+      'city' => $information['city'],
+      'zip_code' => $information['zip_code'],
+      'country' => $information['country'],
+      'phone' => $information['phone']
+    ]);
+    
+
   }
 }

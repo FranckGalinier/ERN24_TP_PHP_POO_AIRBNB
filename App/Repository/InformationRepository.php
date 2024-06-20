@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\App;
+use App\AppRepoManager;
 use App\Model\Information;
 use Core\Repository\Repository;
 
@@ -57,4 +59,24 @@ class InformationRepository extends Repository
 
     return $information;
   }
+
+  /**
+   * méthode qui va insérer les informations d'un utilisateur
+   * @param array $data
+   * @return ?int
+   */
+  public function InsertInformationUser(array $data):?int{
+    $query = sprintf('INSERT INTO `%s` (`address`, `zip_code`, `city`, `country`, `phone`) VALUES (:address, :zip_code, :city, :country, :phone)',
+    $this->getTableName());
+    $stmt = $this->pdo->prepare($query);
+
+    if(!$stmt) return null;
+
+    //on exécute la requête en passant les paramètres
+    $stmt->execute($data);
+
+    //on regarde si on a au moins une ligne qui a été insérée
+    return $this->pdo->lastInsertId();
+  }
+
 }

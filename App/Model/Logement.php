@@ -15,6 +15,7 @@ class Logement extends Model
   public int $user_id;
   public int $type_logement_id;
   public ?int $information_id;
+  public ?bool $is_active;
   //ici on va hydrater l'objet Information
   public Information $information;
   public User $user;

@@ -11,14 +11,14 @@
 
   include(PATH_ROOT . '/views/_templates/_message.html.php')
   ?>
-  <table class="table table-striped">
+  <table class="table table-striped w-75 m-auto">
     <thead>
       <tr>
-        <th class="footer-description">Numéro de commande</th>
-        <th class="footer-description">Nom du logement (Ville)</th>
-        <th class="footer-description">Date début</th>
-        <th class="footer-description">Date de fin</th>
-        <th class="footer-description">Prix</th>
+        <th>Numéro de commande</th>
+        <th>Nom du logement (Ville)</th>
+        <th>Date début</th>
+        <th>Date de fin</th>
+        <th>Prix</th>
       </tr>
     </thead>
     <tbody>

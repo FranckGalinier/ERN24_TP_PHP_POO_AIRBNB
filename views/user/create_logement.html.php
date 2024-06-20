@@ -12,8 +12,8 @@ use App\AppRepoManager; ?>
   <?php include(PATH_ROOT . 'views/_templates/_message.html.php') ?>
 
   <form class="auth-form" action="/add-annonce-form" method="POST" enctype="multipart/form-data">
-<div class="div-form" width="100%">
-  <div>
+  <div class="div-form" width="100%">
+  <div class="card p-4">
     <input type="hidden" name="user_id" value="<?= Session::get(Session::USER)->id  ?>">
     <h3>Le nom du logement</h3>
     <div class="box-auth-input">
@@ -31,7 +31,7 @@ use App\AppRepoManager; ?>
       </div>
     <?php endforeach ?>
 </div>
-<div>
+<div class="card p-4">
  <h3>Description</h3>
     <textarea name="description" class="form-control" form-control></textarea>
     <h3>Prix par nuit (€)</h3>
@@ -47,7 +47,7 @@ use App\AppRepoManager; ?>
     <input type="number" class="form-control" name="size" value="1" min="1" max="500">
     <label class="label-description" for="size"></label>
 </div>
-<div>
+<div class="card p-4">
 <h3>Adresse du logement</h3>
     <input type="text" class="form-control" name="address">
     <h3>Ville du logement</h3>
@@ -60,18 +60,21 @@ use App\AppRepoManager; ?>
     <input type="number" class="form-control" name="phone">
   </div>
 </div>
-    <h3>Les équipements</h3>
-    <div class="d-flex flex-row flex-wrap">
+<div class="card p-4 d-flex justify-content-center align-items-center mb-5 ">
+    <h3 class="text-align-center">Les équipements</h3>
+    <div class="d-flex flex-start col-12 flex-wrap ">
       <?php foreach (AppRepoManager::getRm()->getEquipementRepository()->getAllEquipement() as $equipements) : ?>
-
+        <div class="d-flex justify-content-center align-items-center m-4 card p-4">
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" name="equipements[]" value="<?= $equipements->id ?>" role="switch">
-        </div>
+        <input type="checkbox" class="form-check-input" name="equipements[]" value="<?= $equipements->id ?>" role="switch">
+  
         <img class="icon-equipement" src="/assets/icons/<?= $equipements->image_path ?>" alt="icones<?= $equipements->label ?>" height="40" width="40">
-        <label class="label-description"> <?= $equipements->label ?></label>
+        <label class="form-check-label"> <?= $equipements->label ?></label>
+        </div>
+      </div>
       <?php endforeach ?>
     </div>
-
+  </div>
    
 
     

@@ -51,7 +51,7 @@ class LogementRepository extends Repository
     $array_result = [];
     //on crée la requête SQL
     $query = sprintf(
-      'SELECT * FROM `%s` WHERE `user_id` = :id ',
+      'SELECT * FROM `%s` WHERE `user_id` = :id',
       $this->getTableName()
     );
     //on prépare la requête
@@ -87,6 +87,7 @@ class LogementRepository extends Repository
     $query = sprintf(
       'SELECT *
       FROM `%s`
+      WHERE `is_active` = 1
      ',
       $this->getTableName(), //correspond au %1$s
       AppRepoManager::getRm()->getTypeLogementRepository()->getTableName() //correspond au %1%s
@@ -100,11 +101,11 @@ class LogementRepository extends Repository
     while ($row_data = $stmt->fetch()) {
       //a chaque tour de boucle on instancie un objet logement
       $logement = new Logement($row_data);
-     
-      $logement->type_logement =AppRepoManager::getRm()->getTypeLogementRepository()->getTypeByLogementId($logement->type_logement_id);
-      
+
+      $logement->type_logement = AppRepoManager::getRm()->getTypeLogementRepository()->getTypeByLogementId($logement->type_logement_id);
+
       $logement->information = AppRepoManager::getRm()->getInformationRepository()->getInformationByLogementId($logement->information_id);
-      
+
       //on stocke logement dans le tableau 
 
       $array_result[] = $logement;
@@ -157,5 +158,59 @@ class LogementRepository extends Repository
     $logement->type_logement = AppRepoManager::getRm()->getTypeLogementRepository()->getTypeByLogementId($logement->type_logement_id);
     //je retourne l'objet Logement
     return $logement;
+  }
+
+  /**
+   * méthode qui permet de désactiver un logement
+   * @param int $id
+   * @return bool
+   */
+  public function DesactivationLogement(int $id): bool
+  {
+    //on crée la requete SQL
+    $q = sprintf(
+      'UPDATE `%s` SET `is_active` = 0 WHERE `id` = :id',
+      $this->getTableName()
+    );
+
+    //on prépare la requete
+    $stmt = $this->pdo->prepare($q);
+
+    //on vérifie que la requete est bien préparée
+    if (!$stmt) return false;
+
+    //on execute la requete en passant les paramètres
+    $stmt->execute(['id' => $id]);
+    //on hydrate les autres tables pour supprimer les données liées
+
+
+    //on retourne true si la requete a été exécutée
+    return true;
+  }
+
+  /**
+   * méthode qui va réactiover une annonce de logement
+   * @param int $id
+   * @return bool
+   */
+  public function ActivationLogement(int $id): bool
+  {
+    //on crée la requete SQL
+    $q = sprintf(
+      'UPDATE `%s` SET `is_active` = 1 WHERE `id` = :id',
+      $this->getTableName()
+    );
+
+    //on prépare la requete
+    $stmt = $this->pdo->prepare($q);
+
+    //on vérifie que la requete est bien préparée
+    if (!$stmt) return false;
+
+    //on execute la requete en passant les paramètres
+    $stmt->execute(['id' => $id]);
+
+    //on retourne true si la requete a été exécutée
+    return true;
   }
 }

@@ -166,15 +166,12 @@ h3{
 }
 
 /* form create logement */
-.form-check-input:checked {
-  background-color: #FF5A5F;
-  border-color: #FF5A5F;
-}
 .div-form {
   width: 100%;
   display:flex; 
   justify-content:space-evenly;
   flex-direction: row;
+  margin-bottom: 75px;
 }
 
 /*detail annonce*/
@@ -232,25 +229,22 @@ h3{
 }
 
 .card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #e6ecf1;
+  box-shadow: 10px 10px 20px hsl(227, 15%, 76%), -10px -10px 20px #ffffff;
   border: none;
   border-radius: 10px;
+}
+.card>a:hover{
+background-color: #ebb3ac;
+border-radius: 10px;
+transition: background-color 1.5s;
+box-shadow: 10px 10px 20px hsl(227, 15%, 76%), -10px -10px 20px #ffffff;
 }
 
 .modal-content {
   border: none;
   border-radius: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
-  background-color: #3498db;
-  border: none;
-  transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-  background-color: #2980b9;
 }
 
 .icon-size {
@@ -268,7 +262,7 @@ h3{
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 75%;
 }
 
 th,
@@ -276,6 +270,11 @@ td {
   border: 1px solid #FF5A5F;
   padding: 10px;
   text-align: center;
+}
+th{
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #FF5A5F;
 }
 
 /* Logement card */
