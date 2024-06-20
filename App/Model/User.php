@@ -13,5 +13,5 @@ class User extends Model
   public bool $is_active;
   public bool $is_verified;
 
-  public Information $information;
+  public ?Information $information;
 }

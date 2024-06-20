@@ -36,7 +36,7 @@ class UserController extends Controller
     if ($deleteLogement===false) {
       $form_result->addError(New FormError('Une erreur est survenue lors de la suppression de votre logement'));
     } else {
-      $form_result->addSuccess(New FormSuccess('Votre logement a bien été sdésactivé'));
+      $form_result->addSuccess(New FormSuccess('Votre logement a bien étés désactivé'));
     }
       //si on a des erreurs, on les mets en sessions
       if ($form_result->hasErrors()) {
@@ -98,7 +98,6 @@ class UserController extends Controller
         'form_result' => Session::get(Session::FORM_RESULT),
         'form_success' => Session::get(Session::FORM_SUCCESS),
       ];
-      var_dump($view_data);
       $view = new View('user/profil');
       $view->render($view_data);
     }
@@ -134,9 +133,9 @@ class UserController extends Controller
     $user_id = Session::get(Session::USER)->id;
    
   
-    if(empty($adress) || empty($zip_code) || empty($city) || empty($country) || empty($phone)){
+    if(empty($address) || empty($zip_code) || empty($city) || empty($country) || empty($phone)){
       $form_result->addError(New FormError('Veuillez remplir tous les champs'));
-    }
+    }else{
     $information_data=[
       'address' => $address,
       'zip_code' => $zip_code,
@@ -145,12 +144,14 @@ class UserController extends Controller
       'phone' => $phone,
     ];
     $addInformation = AppRepoManager::getRm()->getInformationRepository()->InsertInformation($information_data);
+    $addIdInformation = AppRepoManager::getRm()->getLogementRepository()->insertIdInformation($addInformation, $user_id);
 
     if ($addInformation===false) {
       $form_result->addError(New FormError('Une erreur est survenue lors de l\'ajout de vos informations'));
     } else {
       $form_result->addSuccess(New FormSuccess('Vos informations ont bien été ajoutées'));
     }
+  }
       //si on a des erreurs, on les mets en sessions
       if ($form_result->hasErrors()) {
         Session::set(Session::FORM_RESULT, $form_result);
@@ -163,7 +164,7 @@ class UserController extends Controller
         Session::remove(Session::FORM_RESULT);
         Session::set(Session::FORM_SUCCESS, $form_result);
         //on redirige sur la page detail
-        self::redirect('/user/profil/' . $user_id);
+        self::redirect('/profil/' . $user_id);
       }
 }
 }

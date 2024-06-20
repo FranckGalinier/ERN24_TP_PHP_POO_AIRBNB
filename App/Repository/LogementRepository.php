@@ -213,4 +213,17 @@ class LogementRepository extends Repository
     //on retourne true si la requete a été exécutée
     return true;
   }
+  /**
+   *  méthode qui va ajouter l'id de la table information à information_id dans la table user
+   * @param int $id
+   * @return bool */
+  public function insertIdInformation(int $information_id, int $user_id): bool
+  {
+    $query = sprintf('UPDATE %s SET `information_id` = :information_id WHERE `id` = :user_id',
+      $this->getTableName());
+    $stmt = $this->pdo->prepare($query);
+    if (!$stmt) return false;
+    $stmt->execute(['information_id' => $information_id, 'user_id' => $user_id]);
+    return true;
+  }
 }

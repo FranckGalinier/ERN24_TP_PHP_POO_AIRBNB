@@ -10,7 +10,7 @@
           <h3>Prénom : <?= $user->lastname ?></h3>
           <h3>Nom : <?= $user->firstname ?></h3>
           <h3>Email : <?= $user->email ?></h3>
-          <a class ="call-action" href="/add_information_user/<?=$user->id ?>">Add information</a>
+          <!-- <a class ="call-action" href="/add_information_user/<?=$user->id ?>">Add information</a> -->
         <!-- <?php  if($user->information != null) : ?>
           <h3>Adresse : <?= $user->information->address ?></h3>
           <h3>Ville : <?= $user->information->city ?></h3>
