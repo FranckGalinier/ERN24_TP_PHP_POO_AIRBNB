@@ -25,11 +25,16 @@ use App\AppRepoManager; ?>
 
     ?> <div class="d-flex align-items-center">
         <div class="list-size-input me-2">
-          <input type="radio" name="typeId" value="<?= $type->id ?>">
+          <input type="radio" name="typeId" value="<?= $type->id ?>"> 
+          <label class=""><?= $type->label ?></label>
         </div>
-        <label class=""><?= $type->label ?></label>
-      </div>
-    <?php endforeach ?>
+       
+      </div><?php endforeach ?>
+      <h3>Ajouter une image</h3> 
+      <input type="text" name="label_image" class="form-control mb-3" placeholder="Ajouter un titre à l'image">
+      <input type="file" name="image_logement" size="30">
+      
+
 </div>
 <div class="card p-4">
  <h3>Description</h3>

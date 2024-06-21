@@ -52,13 +52,21 @@ class LogementController extends Controller
     $zipcode = $data_form['zipcode'] ?? '';
     $country = $data_form['country'] ?? '';
     $phone = $data_form['phone'] ?? '';
+    $label_image= $data_form['label_image'] ?? '';
+    $file_data = $_FILES['image_logement'];
+    $image_name = $file_data['name'] ?? '';
+    $tmp_path = $file_data['tmp_name'] ?? '';
+    $public_path = 'public/assets/media/';
 
 
     //vérification des données
-    if (empty($name) || empty($user_id) || empty($typeLogementId) || empty($price) || empty($city)) {
+    if (empty($name) || empty($user_id) || empty($typeLogementId) || empty($price) || empty($city)
+     || empty($description) || empty($nb_voyageur) || empty($nb_rooms) || empty($size) || empty($address)
+     || empty($zipcode) || empty($country) || empty($phone)){
       $form_result->addError(new FormError('Tous les champs sont obligatoires'));
-    } else {
-
+    }elseif(!in_array($file_data['type'] ?? '', ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])) {
+      $form_result->addError(new FormError('Le format de l\'image n\'est pas valide'));
+    }else{
       //on reconstruit un tableau pour insérer les adresses
       $logement_information_data = [
         'address' => $address,
@@ -104,6 +112,24 @@ class LogementController extends Controller
         if (!$logement_equipement) {
           $form_result->addError(new FormError('Erreur lors de l\' ajout des équipements'));
         }
+
+        //on va traiter l'image
+        $filename = uniqid() . '_' . $image_name;
+        $slug = explode('.', strtolower(str_replace(' ', '-', $filename)))[0];
+        $imgPathPublic = PATH_ROOT . $public_path . $filename;
+
+        if (move_uploaded_file($tmp_path, $imgPathPublic)) {
+          $image_data = [
+            'logement_id' => $logement_id,
+            'image_path' => htmlspecialchars(trim($filename)),
+            'is_active' => 1,
+            'label' => $label_image
+          ];
+        
+        $image_logement = AppRepoManager::getRm()->getMediaRepository()->insertMedia($image_data);
+
+        if(!$image_logement){
+          $form_result->addError(new FormError('Erreur lors de l\' ajout des images'));
       }
     }
     //si tout est ok on envoie un message de succès
@@ -124,6 +150,8 @@ class LogementController extends Controller
       self::redirect('/user/create-logement/' . $user_id);
     }
   }
+}
+  }
 
   /**
    * méthode qui va afficher le détail d'un logement par son id
@@ -135,6 +163,7 @@ class LogementController extends Controller
 
     $view_data = [
       'logement' => AppRepoManager::getRm()->getLogementRepository()->getAnnonceById($id),
+      'favoris' => AppRepoManager::getRm()->getFavorisRepository()->isFavorite(Session::get(Session::USER)->id, $id),
       'form_result' => Session::get(Session::FORM_RESULT),
       'form_success' => Session::get(Session::FORM_SUCCESS),
     ];

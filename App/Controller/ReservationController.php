@@ -61,11 +61,9 @@ class ReservationController extends Controller
 
     if (empty($date_start) || empty($date_end) || empty($nb_adult)){
       $form_result->addError(new FormError('Tous les champs sont obligatoires'));
-    }elseif($nb_adult>15)
-     {
-       $form_result->addError(new FormError('Le nombre d\'adulte doit être inférieur à 15'));
-     }elseif($nb_adult<1)
-     {
+     }elseif($nb_adult>15){
+       $form_result->addError(new FormError('Le nombre d\'adulte doit être inférieur à 20'));
+     }elseif($nb_adult<1){
        $form_result->addError(new FormError('Le nombre d\'adulte doit être supérieur à 1'));
      }elseif($date_start==$date_end){
         $form_result->addError(new FormError('La date de départ doit être différente de la date d\'arrivée'));

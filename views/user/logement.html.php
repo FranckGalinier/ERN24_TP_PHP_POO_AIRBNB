@@ -29,9 +29,9 @@
 
           <div class="d-flex justify-content-center">
             <?php if($logement->is_active===false): ?>
-              <a href="/user/logement/active/<?= $logement->id ?>" class="btn btn-success"><i class="bi bi-eye"></i></a>
+              <a title="Activer le logement" href="/user/logement/active/<?= $logement->id ?>" class="btn btn-success"><i class="bi bi-eye"></i></a>
            <?php else: ?>
-              <a href="/user/logement/delete/<?= $logement->id ?>" class="btn btn-danger"><i class="bi bi-eye-slash"></i></a>
+              <a title="Désactiver le logement"href="/user/logement/delete/<?= $logement->id ?>" class="btn btn-danger"><i class="bi bi-eye-slash"></i></a>
             <!-- <a onclick="return confirm('Voulez-vous vraiment supprimer ce logement ?')" 
             href="/user/logement/delete/<?= $logement->id ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a> -->
             <?php endif ?>

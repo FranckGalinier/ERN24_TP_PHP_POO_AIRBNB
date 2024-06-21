@@ -97,6 +97,10 @@ class App implements DatabaseConfigInterface
     $this->router->get('/user/cancel-reservation/{id}', [ReservationController::class, 'cancelReservation']);
     //Partie Host
     $this->router->get('/hosting', [HomeController::class, 'hosting']);
+    //partie favoris
+    $this->router->get('/add-favorite/{id}', [HomeController::class, 'addFavorite']);
+    $this->router->get('/delete-favorite/{id}', [HomeController::class, 'deleteFavorite']);
+    $this->router->get('/list/favoris/{id}', [HomeController::class, 'listFavorisUser']);
   }
 
   //3. méthode qui démarre le router

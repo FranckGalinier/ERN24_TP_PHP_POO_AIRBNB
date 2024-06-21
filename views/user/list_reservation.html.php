@@ -21,7 +21,7 @@
     </div>
     
     
-    <?php else : ?>
+    <?php else: ?>
   <table class="table table-striped w-75 m-auto">
     <thead>
       <tr>

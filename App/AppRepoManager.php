@@ -5,6 +5,7 @@ namespace App;
 use App\Model\Media;
 use App\Repository\UserRepository;
 use App\Repository\MediaRepository;
+use App\Repository\FavorisRepository;
 use App\Repository\LogementRepository;
 use App\Repository\EquipementRepository;
 use App\Repository\InformationRepository;
@@ -28,7 +29,7 @@ class AppRepoManager
   private ReservationRepository $ReservationRepository;
   private TypeLogementRepository $TypeLogementRepository;
   private UserRepository $UserRepository;
-  
+  private FavorisRepository $FavorisRepository;
 
 
   //on crée ensuite les getter pour accéder à la propriété privée
@@ -75,6 +76,10 @@ class AppRepoManager
   {
     return $this->UserRepository;
   }
+  public function getFavorisRepository(): FavorisRepository
+  {
+    return $this->FavorisRepository;
+  }
 
 
   //enfin, on declare un construct qui va instancier les repositories
@@ -91,6 +96,7 @@ class AppRepoManager
     $this->ReservationRepository = new ReservationRepository($config);
     $this->TypeLogementRepository = new TypeLogementRepository($config);
     $this->UserRepository = new UserRepository($config);
+    $this->FavorisRepository = new FavorisRepository($config);
     
   }
 }

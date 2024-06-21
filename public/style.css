@@ -20,6 +20,10 @@ li {
   margin: 0;
   padding: 0;
 }
+button{
+  text-decoration: none;
+  border: none;
+}
 
 /* Police */
 @font-face {
@@ -233,12 +237,18 @@ h3{
   box-shadow: 10px 10px 20px hsl(227, 15%, 76%), -10px -10px 20px #ffffff;
   border: none;
   border-radius: 10px;
+  
 }
-.card>a:hover{
-background-color: #ebb3ac;
+.card-hover
+{
+  height: 175px;
+}
+.card-hover>a:hover{
+background-color: #d0e1f0;
 border-radius: 10px;
-transition: background-color 1.5s;
+ transition: background-color 1s;
 box-shadow: 10px 10px 20px hsl(227, 15%, 76%), -10px -10px 20px #ffffff;
+height: 175px;
 }
 
 .modal-content {
@@ -324,4 +334,16 @@ footer {
 .form-control:focus{
   border-color: #FF5A5F;
   box-shadow: 0 0 0 0.2rem #ffa4a7;
+}
+
+/* bouton favoris */
+.button-love{
+  background-color: #FF5A5F;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+}
+.bi-heart-fill{
+  color:#FF5A5F;
 }
