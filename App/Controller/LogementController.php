@@ -60,12 +60,12 @@ class LogementController extends Controller
 
 
     //vérification des données
-    if (empty($name) || empty($user_id) || empty($typeLogementId) || empty($price) || empty($city)
+    if (!in_array($file_data['type'] ?? '', ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])) {
+      $form_result->addError(new FormError('Le format de l\'image n\'est pas valide'));
+    } elseif (empty($name) || empty($user_id) || empty($typeLogementId) || empty($price) || empty($city)
      || empty($description) || empty($nb_voyageur) || empty($nb_rooms) || empty($size) || empty($address)
      || empty($zipcode) || empty($country) || empty($phone)){
       $form_result->addError(new FormError('Tous les champs sont obligatoires'));
-    }elseif(!in_array($file_data['type'] ?? '', ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])) {
-      $form_result->addError(new FormError('Le format de l\'image n\'est pas valide'));
     }else{
       //on reconstruit un tableau pour insérer les adresses
       $logement_information_data = [
@@ -132,8 +132,11 @@ class LogementController extends Controller
           $form_result->addError(new FormError('Erreur lors de l\' ajout des images'));
       }
     }
+    
     //si tout est ok on envoie un message de succès
-    $form_result->addSuccess(new FormSuccess('Adresse ajoutée avec succès'));
+    $form_result->addSuccess(new FormSuccess('Logement ajoutée avec succès'));
+  }
+}
 
     //si on a des erreurs, on les mets en sessions
     if ($form_result->hasErrors()) {
@@ -149,9 +152,8 @@ class LogementController extends Controller
       //on redirige sur la page detail
       self::redirect('/user/create-logement/' . $user_id);
     }
-  }
-}
-  }
+
+ }
 
   /**
    * méthode qui va afficher le détail d'un logement par son id
@@ -163,7 +165,6 @@ class LogementController extends Controller
 
     $view_data = [
       'logement' => AppRepoManager::getRm()->getLogementRepository()->getAnnonceById($id),
-      'favoris' => AppRepoManager::getRm()->getFavorisRepository()->isFavorite(Session::get(Session::USER)->id, $id),
       'form_result' => Session::get(Session::FORM_RESULT),
       'form_success' => Session::get(Session::FORM_SUCCESS),
     ];

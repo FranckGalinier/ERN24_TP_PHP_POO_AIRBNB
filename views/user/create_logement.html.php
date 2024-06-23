@@ -57,7 +57,7 @@ use App\AppRepoManager; ?>
     <input type="text" class="form-control" name="address">
     <h3>Ville du logement</h3>
     <input type="text" class="form-control" name="city">
-    <h3>ZIPCODE</h3>
+    <h3>Code Postal</h3>
     <input type="number" class="form-control" name="zipcode">
     <h3>Pays</h3>
     <input type="text"class="form-control" name="country">

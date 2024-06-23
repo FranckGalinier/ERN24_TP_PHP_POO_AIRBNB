@@ -16,12 +16,12 @@
       <input type="email" class="form-control" name="email" placeholder="name@example.com">
     </div>
     <div class="box-auth-input">
-      <label class="detail-description">Mot de passe</label>
-      <input type="password" class="form-control" name="password" placeholder="Mininum : 1 majuscule, 1 minuscule, 1 chiffre, 8 caractères">
+      <label class="detail-description">Mot de passe</label><button class="unmask" id="unmask" type="button" title="Afficher ou masquer le mot de passe"><i class="bi bi-eye"></i></button>
+      <input type="password" id="mdp" class="form-control" name="password" placeholder="Mininum : 1 majuscule, 1 minuscule, 1 chiffre, 8 caractères">
     </div>
     <div class="box-auth-input">
       <label class="detail-description">Confirmer le mot de passe</label>
-      <input type="password" class="form-control" name="password_confirm">
+      <input type="password" id="mdp1" class="form-control" name="password_confirm">
     </div>
     <div class="box-auth-input">
       <label class="detail-description">Nom</label>

@@ -21,7 +21,7 @@ class FavorisRepository extends Repository
    */
   public function addFavorite(int $user_id, int $logement_id):bool
   {
-    $query = sprintf('INSERT INTO %s (`user_id`, `logement_id`, `is_active`) VALUES (:user_id, :logement_id, 1)',
+    $query = sprintf('INSERT INTO %s (`user_id`, `logement_id`) VALUES (:user_id, :logement_id)',
      $this->getTableName());
     $stmt = $this->pdo->prepare($query);
     if (!$stmt) return false;

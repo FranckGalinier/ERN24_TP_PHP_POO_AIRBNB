@@ -1,6 +1,7 @@
 <?php include(PATH_ROOT . 'views/_templates/_header.html.php'); ?>
 <?php
 
+use App\AppRepoManager;
 use Core\Session\Session; ?>
 <main>
   <div class="admin-container">
@@ -49,15 +50,18 @@ use Core\Session\Session; ?>
 
             <p>
               <?php
-              if ($favoris) : ?>
-                <a href="/delete-favorite/<?= $logement->id ?>" class="btn">
-                  <i class="bi bi-heart-fill"></i> Enregistré &ensp; &sdot;</a>
-              <?php else : ?>
-                <a href="/add-favorite/<?= $logement->id ?>" class="btn">
-                  <i class="bi bi-heart"></i> Ajouter aux favoris &ensp; &sdot; </a>
+             if ($auth::isAuth()) :
+              $favoris = AppRepoManager::getRm()->getFavorisRepository()->isFavorite(Session::get(Session::USER)->id, $logement->id);
+                  if ($favoris) : ?>
+                  <a href="/delete-favorite/<?= $logement->id ?>" class="btn">
+                  <i class="bi bi-heart-fill"></i> Enregistré &ensp;</a>
+                  <?php else : ?>
+                  <a href="/add-favorite/<?= $logement->id ?>" class="btn">
+                  <i class="bi bi-heart"></i> Ajouter aux favoris &ensp;</a>
               <?php endif; ?>
+            <?php endif; ?>
               <?= $logement->nb_traveler ?> Voyageurs<span> · </span>
-              <?= $logement->nb_rooms ?> Chambres
+              <?= $logement->nb_rooms ?> Chambres &sdot; <?= $logement->size ?> m²
             </p>
 
           </div>
@@ -269,8 +273,8 @@ use Core\Session\Session; ?>
       <div class="col-md-4">
         <div class="card">
           <div class="card-body">
-            <h1 class="price-per-night"><?= $logement->price ?> € par nuit</h1>
-            <a href="/connexion" class="call-action">Connectez-vous pour réserver</a>
+            <h1 class="price-per-night"><?= $logement->price ?> € /nuit</h1>
+            <a href="/connexion" class="call-action">Connectez-vous</a>
           </div>
         </div>
       </div>

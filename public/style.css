@@ -347,3 +347,14 @@ footer {
 .bi-heart-fill{
   color:#FF5A5F;
 }
+.unmask{
+  width: 30px;
+  height: 30px;
+  left: 1430px;
+  background-color: #ffffff;
+}
+.unmask:hover{
+  color: #FF5A5F;
+  background-color: rgb(238, 236, 236);
+  border-radius: 50%;
+}

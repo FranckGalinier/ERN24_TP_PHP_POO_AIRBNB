@@ -1,4 +1,19 @@
   <footer id="footer">
+  <script>
+document.getElementById( 'unmask' ).addEventListener( "click", function() {
+   
+    attribut = document.getElementById( 'mdp' ).getAttribute( 'type');
+    attribut1 = document.getElementById( 'mdp1' ).getAttribute( 'type');
+    if(attribut == 'password'){
+        document.getElementById( 'mdp' ).setAttribute( 'type', 'text');
+        document.getElementById( 'mdp1' ).setAttribute( 'type', 'text');
+    } else {
+        document.getElementById( 'mdp' ).setAttribute( 'type', 'password');
+        document.getElementById( 'mdp1' ).setAttribute( 'type', 'password');
+    }
+    
+ });
+</script>
     <nav>
       <div class="d-flex justify-content-center">
         <p>&copy 2024 Airbnb, Inc &sdot;  <a href="/">Conditions Générales</a>

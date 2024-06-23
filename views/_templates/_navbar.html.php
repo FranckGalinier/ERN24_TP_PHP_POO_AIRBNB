@@ -57,7 +57,7 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
                 <div>
                   Bonjour, <?= $user->firstname ?>  </div><hr class="dropdown-divider">
         
-                  <a href="/user/reservation/<?= $user_id ?>" class="dropdown-item custom-link">Voyages</a>
+                  <a href="/user/reservation/<?= $user_id ?>" class="dropdown-item custom-link">Réservation</a>
                 </li>
                 <li>
                   <a href="/list/favoris/<?= $user_id ?>" class="dropdown-item custom-link">Favoris</a>
