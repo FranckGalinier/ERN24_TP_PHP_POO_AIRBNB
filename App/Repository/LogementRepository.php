@@ -87,16 +87,15 @@ class LogementRepository extends Repository
     $query = sprintf(
       'SELECT *
       FROM `%s`
-      WHERE `is_active` = 1
-     ',
+      WHERE `is_active` = 1',
       $this->getTableName(), //correspond au %1$s
-      AppRepoManager::getRm()->getTypeLogementRepository()->getTableName() //correspond au %1%s
     );
     //on exécute la requête
     $stmt = $this->pdo->query($query);
 
     //on vérifie que la requête est bien exécutée
     if (!$stmt) return $array_result;
+    
     //on récupère les données que l'on stocke dans le tableau
     while ($row_data = $stmt->fetch()) {
       //a chaque tour de boucle on instancie un objet logement
@@ -107,7 +106,6 @@ class LogementRepository extends Repository
       $logement->information = AppRepoManager::getRm()->getInformationRepository()->getInformationByLogementId($logement->information_id);
 
       //on stocke logement dans le tableau 
-
       $array_result[] = $logement;
     }
     //retourne le tableau

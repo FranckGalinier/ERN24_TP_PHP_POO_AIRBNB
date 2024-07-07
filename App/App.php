@@ -66,6 +66,7 @@ class App implements DatabaseConfigInterface
 
     //ON ENREGISTRE LES ROUTES ICI
     $this->router->get('/', [HomeController::class, 'home']);
+    
     //INFO: si on veut renvoyer une vue à l'utilisateur => route en "get"
     //INFO: si on veut traiter des données d'un formulaire => route en "post"
     //PARTIE AUTHENTIFICATION
