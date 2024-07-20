@@ -17,7 +17,7 @@ With the commands :
 
 En SSH :
 
-    git@github.com:FranckGalinier/TP_PHP_OBJECT.git
+    git@github.com:FranckGalinier/ERN24_TP_PHP_POO_AIRBNB.git
 
 
 2- Open the project on a IDE
