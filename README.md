@@ -24,7 +24,7 @@ En SSH :
 
 3- Stop and remove your old container
 
-4- Open a terminal and start the commands (when you are in the folder "TP_PHP_POO_AIRBNB")  :
+4- Open a terminal and start the commands (when you are in the folder "ERN24_TP_PHP_POO_AIRBNB")  :
 
     sh ./RUN/automate.sh
 
