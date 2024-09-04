@@ -26,7 +26,7 @@ En SSH :
 
 4- Open a terminal and start the commands (when you are in the folder "ERN24_TP_PHP_POO_AIRBNB")  :
 
-    sh ./RUN/automate.sh
+    sh ./RUN/automate_setup.sh
 
 <i># this commands will start the containers lando, install the dependencies and import the database.  </i>
 

@@ -53,30 +53,26 @@ class AuthController extends Controller
     $user = new User();
 
     //on s'occupe de toute les vérifications
-    if(
-      empty($data_form['email']) ||
-      empty($data_form['password'])){
-      $formResult->addError(new FormError('Veuillez remplir tous les champs'));
-      }
-      elseif(!$this->validEmail($data_form['email']))
-      {
+    if(empty($data_form['email']) || empty($data_form['password'])){
+        $formResult->addError(new FormError('Veuillez remplir tous les champs'));
+    }elseif(!$this->validEmail($data_form['email'])){
         $formResult->addError(new FormError('L\'email n\'est pas valide'));
-      }else{
-        $email = strtolower($this->validInput($data_form['email']));
-        //on vérifie qu'on a bien un utilisateur avec cet email
-        $user = AppRepoManager::getRm()->getUserRepository()->findUserByEmail($email);
+    }else{
+      $email = strtolower($this->validInput($data_form['email']));
+      //on vérifie qu'on a bien un utilisateur avec cet email
+      $user = AppRepoManager::getRm()->getUserRepository()->findUserByEmail($email);
 
-        if(is_null($user) || !password_verify ($this->validInput($data_form['password']), $user->password))
-        {
-          $formResult->addError(new FormError('Email ou mot de passe incorrect'));
-        }
+      if(is_null($user) || !password_verify ($this->validInput($data_form['password']), $user->password)){
+        $formResult->addError(new FormError('Email ou mot de passe incorrect'));
       }
-      //si on a de serreurs
-    if($formResult->hasErrors())
-    {
+    }
+
+    //si on a des erreurs
+    if($formResult->hasErrors()){
       Session::set(Session::FORM_RESULT, $formResult);
       self::redirect('/connexion');
     }
+
     $user->password='';
     //dans la session je crée une clé USER et je la stocke dans $user
     Session::set(Session::USER, $user);
@@ -196,8 +192,7 @@ class AuthController extends Controller
     $user = AppRepoManager::getRm()->getUserRepository()->addUser($data_user);
     }
     //si on a de serreurs
-    if($formResult->hasErrors())
-    {
+    if($formResult->hasErrors()){
       Session::set(Session::FORM_RESULT, $formResult);
       self::redirect('/inscription');
     }

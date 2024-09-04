@@ -24,8 +24,8 @@ class LogementRepository extends Repository
   public function addLogement(array $data): ?int
   {
     $query = sprintf(
-      'INSERT INTO `%s` (`title`, `description`, `price`, `nb_rooms`, `nb_traveler`, `size`, `user_id`, `information_id`,`type_logement_id`) 
-    VALUES (:title, :description, :price, :nb_rooms, :nb_traveler, :size, :user_id, :information_id, :type_id)',
+      'INSERT INTO `%s` (`title`, `description`, `price`, `nb_rooms`, `nb_traveler`, `size`, `user_id`, `information_id`,`type_logement_id`, `is_active`) 
+    VALUES (:title, :description, :price, :nb_rooms, :nb_traveler, :size, :user_id, :information_id, :type_id, 1)',
       $this->getTableName()
     );
 
@@ -95,7 +95,7 @@ class LogementRepository extends Repository
 
     //on vérifie que la requête est bien exécutée
     if (!$stmt) return $array_result;
-    
+
     //on récupère les données que l'on stocke dans le tableau
     while ($row_data = $stmt->fetch()) {
       //a chaque tour de boucle on instancie un objet logement
@@ -217,8 +217,10 @@ class LogementRepository extends Repository
    * @return bool */
   public function insertIdInformation(int $information_id, int $user_id): bool
   {
-    $query = sprintf('UPDATE %s SET `information_id` = :information_id WHERE `id` = :user_id',
-      $this->getTableName());
+    $query = sprintf(
+      'UPDATE %s SET `information_id` = :information_id WHERE `id` = :user_id',
+      $this->getTableName()
+    );
     $stmt = $this->pdo->prepare($query);
     if (!$stmt) return false;
     $stmt->execute(['information_id' => $information_id, 'user_id' => $user_id]);
